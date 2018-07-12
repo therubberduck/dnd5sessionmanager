@@ -20,6 +20,7 @@
             android:layout_marginTop="16dp"
             android:textSize="20sp"
             android:textColor="@color/text"
+            android:lineSpacingMultiplier="1.5"
             android:text="@string/creditstext"/>
     </LinearLayout>
 </FrameLayout>

@@ -3,5 +3,7 @@
     <string name="initiative">Initiative</string>
     <string name="credits">Credits</string>
 
-    <string name="creditstext">Icons made by <a href="http://lorcblog.blogspot.com">Lorc</a></string>
+    <string name="creditstext">Icons acquired from <a href="https://game-icons.net">https://game-icons.net</a> and
+        made by <a href="http://lorcblog.blogspot.com">Lorc</a>
+        and <a href="http://opengameart.org/content/95-game-icons">Sbed</a>.</string>
 </resources>

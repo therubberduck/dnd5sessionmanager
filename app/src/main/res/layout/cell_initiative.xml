@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rltCell"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@drawable/bg_backgroundsecondary_rounded">
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@id/fabDelay"
+        android:layout_centerVertical="true"
+        android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/text"
+        tools:text="A Big Hobgoblin (21)"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabDelay"
+        android:layout_toLeftOf="@id/fabRemove"
+        android:layout_width="48dp" android:layout_height="48dp"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_hourglass"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabRemove"
+        android:layout_alignParentEnd="true"
+        android:layout_width="48dp" android:layout_height="48dp"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_skull"/>
+</RelativeLayout>
