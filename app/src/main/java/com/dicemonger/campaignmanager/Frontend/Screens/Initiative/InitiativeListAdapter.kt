@@ -9,8 +9,15 @@ import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
-class InitiativeListAdapter(items: List<Creature>, private val listener: ObjectListAdapterListener<Creature>, listview: RecyclerView) :
+interface InitiativeListListener : ObjectListAdapterListener<Creature> {
+    fun initDelay(creature: Creature)
+    fun initRemove(creature: Creature)
+}
+
+class InitiativeListAdapter(items: List<Creature>, private val listener: InitiativeListListener, listview: RecyclerView) :
         ObjectListAdapter<Creature, InitiativeListAdapter.ViewHolder>(items, listener.getContext(), listview) {
+
+    var currentSelected: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val cell = _inflater.inflate(R.layout.cell_initiative, null)
@@ -20,15 +27,20 @@ class InitiativeListAdapter(items: List<Creature>, private val listener: ObjectL
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
 
+        val isActive = position == currentSelected
+        holder.vwIsActive.isActive = isActive
+
         val text = item.name + "(" + item.currentInit + ")"
         holder.txtScreenName.setText(text)
 
-        holder.rltCell.setOnClickListener { listener.itemClicked(item) }
+        holder.btnDelay.setOnClickListener { listener.initDelay(item) }
+        holder.btnRemove.setOnClickListener { listener.initRemove(item) }
     }
 
     class ViewHolder(cell: View) : RecyclerView.ViewHolder(cell) {
         val rltCell = cell.findViewById<RelativeLayout>(R.id.rltCell)
         val txtScreenName = cell.findViewById<TextView>(R.id.txtName)
+        val vwIsActive = cell.findViewById<ActivatableLayout>(R.id.lnrActive)
         val btnDelay = cell.findViewById<ImageButton>(R.id.fabDelay)
         val btnRemove = cell.findViewById<ImageButton>(R.id.fabRemove)
     }

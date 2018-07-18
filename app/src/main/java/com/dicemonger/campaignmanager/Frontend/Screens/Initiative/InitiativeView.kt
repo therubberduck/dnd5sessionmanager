@@ -24,7 +24,7 @@ class InitiativeView(context: Context?) : BaseScreenView<InitiativeScreen>(conte
         _rclInitiative.addItemDecoration(RecyclerViewMargin(4, 1))
     }
 
-    fun setAdapter(listener: ObjectListAdapterListener<Creature>) {
+    fun setAdapter(listener: InitiativeListListener) {
 
         adapter = InitiativeListAdapter(listOf(), listener, _rclInitiative)
 

@@ -16,6 +16,7 @@
         <EditText
             android:id="@+id/edtInit"
             android:layout_width="48dp" android:layout_height="wrap_content"
+            android:inputType="numberSigned"
             android:hint="Init"/>
         <Button
             android:id="@+id/btnAdd"

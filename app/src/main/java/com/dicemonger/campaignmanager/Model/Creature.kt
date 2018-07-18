@@ -1,6 +1,8 @@
 package com.dicemonger.campaignmanager.Model
 
-data class Creature(val name: String, val initBonus: Int, val currentInit: Int) {
+import java.util.*
+
+data class Creature(val name: String, val initBonus: Int, var currentInit: Int) {
     val prefixInitBonus: String
         get() {
             if(initBonus < 0) {
@@ -8,4 +10,8 @@ data class Creature(val name: String, val initBonus: Int, val currentInit: Int) 
             }
             return "+" + initBonus
         }
+
+    fun rollInitiative() {
+        currentInit = Random().nextInt(20) + 1 + initBonus
+    }
 }

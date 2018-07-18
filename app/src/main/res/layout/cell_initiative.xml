@@ -10,24 +10,28 @@
     android:background="@drawable/bg_backgroundsecondary_rounded">
     <TextView
         android:id="@+id/txtName"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@id/fabDelay"
+        android:layout_alignParentStart="true" android:layout_toLeftOf="@id/lnrActive"
         android:layout_centerVertical="true"
         android:layout_width="0dp" android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:textSize="20sp"
         android:textColor="@color/text"
         tools:text="A Big Hobgoblin (21)"/>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabDelay"
-        android:layout_toLeftOf="@id/fabRemove"
-        android:layout_width="48dp" android:layout_height="48dp"
-        android:layout_margin="4dp"
-        android:src="@drawable/ic_hourglass"/>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabRemove"
+    <com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ActivatableLayout
+        android:id="@+id/lnrActive"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content" android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
-        android:layout_width="48dp" android:layout_height="48dp"
-        android:layout_margin="4dp"
-        android:src="@drawable/ic_skull"/>
+        android:background="@drawable/bg_accent_rounded_activated">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabDelay"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:src="@drawable/ic_hourglass"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabRemove"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:src="@drawable/ic_skull"/>
+    </com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ActivatableLayout>
 </RelativeLayout>

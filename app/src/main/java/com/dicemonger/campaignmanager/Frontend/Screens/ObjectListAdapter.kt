@@ -68,7 +68,7 @@ abstract class ObjectListAdapter<T, U: RecyclerView.ViewHolder> : RecyclerView.A
         notifyDataSetChanged()
     }
 
-    fun ortByString(selector: (T) -> String) {
+    fun sortByString(selector: (T) -> String) {
         _items.sortBy({selector(it)})
         notifyDataSetChanged()
     }
