@@ -15,6 +15,7 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         setupCharacters()
 
         view.setAdapter(this)
+        view.setNextButton { nextInitiative() }
         view.setAddButton{addInitiative()}
 
         //Add all characters by default
@@ -27,6 +28,14 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
 
         return view
     }
+
+    override fun getContext(): Context {
+        return activity
+    }
+
+    //
+    // UI Setup
+    //
 
     fun setupCharacters() {
         val creatures = listOf(
@@ -42,9 +51,19 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         InitPickerDialog(activity, this, charactersNotOnList)
     }
 
-    override fun getContext(): Context {
-        return activity
+    fun nextInitiative() {
+        var currentSelected = view.adapter.currentSelected + 1
+
+        if(currentSelected >= view.adapter.itemCount) {
+            currentSelected = 0
+        }
+
+        view.adapter.currentSelected = currentSelected
     }
+
+    //
+    // Init Picker
+    //
 
     override fun creatureAdded(creature: Creature) {
         creature.rollInitiative()
@@ -52,6 +71,10 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         view.adapter.sortByInt { -it.currentInit }
         charactersNotOnList.remove(creature)
     }
+
+    //
+    // Cell Handling
+    //
 
     override fun itemClicked(item: Creature) {
         TODO("not implemented") //Currently itemClicked is not implemented or needed

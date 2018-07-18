@@ -18,6 +18,11 @@ class InitiativeListAdapter(items: List<Creature>, private val listener: Initiat
         ObjectListAdapter<Creature, InitiativeListAdapter.ViewHolder>(items, listener.getContext(), listview) {
 
     var currentSelected: Int = 0
+        set(value) {
+            val oldValue = field
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val cell = _inflater.inflate(R.layout.cell_initiative, null)
@@ -25,9 +30,13 @@ class InitiativeListAdapter(items: List<Creature>, private val listener: Initiat
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
+        var adjustedPosition = position + currentSelected
+        if(adjustedPosition >= itemCount) {
+            adjustedPosition = 0
+        }
+        val item = getItem(adjustedPosition)
 
-        val isActive = position == currentSelected
+        val isActive = position == 0
         holder.vwIsActive.isActive = isActive
 
         val text = item.name + "(" + item.currentInit + ")"
