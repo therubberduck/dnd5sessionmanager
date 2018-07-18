@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="activate">
         <attr name="state_active" format="boolean"/>
+        <attr name="state_readied" format="boolean"/>
     </declare-styleable>
 </resources>

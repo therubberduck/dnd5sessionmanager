@@ -10,7 +10,7 @@ import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
 interface InitiativeListListener : ObjectListAdapterListener<Creature> {
-    fun initDelay(creature: Creature)
+    fun initReady(creature: Creature)
     fun initRemove(creature: Creature)
 }
 
@@ -41,15 +41,22 @@ class InitiativeListAdapter(items: List<Creature>, private val listener: Initiat
         val text = item.name + "(" + item.currentInit + ")"
         holder.txtScreenName.setText(text)
 
-        holder.btnDelay.setOnClickListener { listener.initDelay(item) }
+        if(item.isReadied) {
+            holder.vwIsActive.isReady = true
+        }
+        else {
+            holder.vwIsActive.isReady = false
+        }
+
+        holder.btnReady.setOnClickListener { listener.initReady(item) }
         holder.btnRemove.setOnClickListener { listener.initRemove(item) }
     }
 
     class ViewHolder(cell: View) : RecyclerView.ViewHolder(cell) {
         val rltCell = cell.findViewById<RelativeLayout>(R.id.rltCell)
         val txtScreenName = cell.findViewById<TextView>(R.id.txtName)
-        val vwIsActive = cell.findViewById<ActivatableLayout>(R.id.lnrActive)
-        val btnDelay = cell.findViewById<ImageButton>(R.id.fabDelay)
+        val vwIsActive = cell.findViewById<InitStateLinearLayout>(R.id.lnrActive)
+        val btnReady = cell.findViewById<ImageButton>(R.id.fabReady)
         val btnRemove = cell.findViewById<ImageButton>(R.id.fabRemove)
     }
 }

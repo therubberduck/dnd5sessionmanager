@@ -17,14 +17,14 @@
         android:textSize="20sp"
         android:textColor="@color/text"
         tools:text="A Big Hobgoblin (21)"/>
-    <com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ActivatableLayout
+    <com.dicemonger.campaignmanager.Frontend.Screens.Initiative.InitStateLinearLayout
         android:id="@+id/lnrActive"
         android:orientation="horizontal"
         android:layout_width="wrap_content" android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:background="@drawable/bg_accent_rounded_activated">
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabDelay"
+            android:id="@+id/fabReady"
             android:layout_width="48dp" android:layout_height="48dp"
             android:layout_margin="4dp"
             android:src="@drawable/ic_hourglass"/>
@@ -33,5 +33,5 @@
             android:layout_width="48dp" android:layout_height="48dp"
             android:layout_margin="4dp"
             android:src="@drawable/ic_skull"/>
-    </com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ActivatableLayout>
+    </com.dicemonger.campaignmanager.Frontend.Screens.Initiative.InitStateLinearLayout>
 </RelativeLayout>

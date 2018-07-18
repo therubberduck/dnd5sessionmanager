@@ -3,6 +3,9 @@ package com.dicemonger.campaignmanager.Model
 import java.util.*
 
 data class Creature(val name: String, val initBonus: Int, var currentInit: Int) {
+
+    var isReadied = false
+
     val prefixInitBonus: String
         get() {
             if(initBonus < 0) {

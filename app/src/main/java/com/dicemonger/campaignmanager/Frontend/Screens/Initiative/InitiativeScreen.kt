@@ -59,6 +59,9 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         }
 
         view.adapter.currentSelected = currentSelected
+
+        //Unready any readied creature when it becomes that creature's turn
+        view.adapter.getItem(currentSelected).isReadied = false
     }
 
     //
@@ -89,8 +92,9 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         TODO("not implemented") //Currently itemClicked is not implemented or needed
     }
 
-    override fun initDelay(creature: Creature) {
-
+    override fun initReady(creature: Creature) {
+        creature.apply { isReadied = !isReadied }
+        view.adapter.notifyDataSetChanged()
     }
 
     override fun initRemove(creature: Creature) {
