@@ -15,20 +15,15 @@ interface ObjectListAdapterListener<T> {
     fun itemClicked(item: T)
 }
 
-abstract class ObjectListAdapter<T, U: RecyclerView.ViewHolder> : RecyclerView.Adapter<U> {
+abstract class ObjectListAdapter<T, U: RecyclerView.ViewHolder>(items: List<T> = ArrayList<T>(), _context: Context, protected val _recyclerView: RecyclerView? = null)
+    : RecyclerView.Adapter<U>() {
 
-    protected val _context: Context
     protected val _inflater: LayoutInflater
-    protected val _listener: ObjectListAdapterListener<T>?
     protected val _items: MutableList<T>
-    protected val _recyclerview: RecyclerView?
 
-    constructor(items: List<T> = ArrayList<T>(), context: Context, recyclerView: RecyclerView? = null){
-        _context = context
+    init {
         _inflater = LayoutInflater.from(_context)
-        _listener = null
         _items = items.toMutableList()
-        _recyclerview = recyclerView
     }
 
     // List Manipulation
@@ -41,6 +36,10 @@ abstract class ObjectListAdapter<T, U: RecyclerView.ViewHolder> : RecyclerView.A
     fun clear() {
         _items.clear();
         notifyDataSetChanged()
+    }
+
+    fun getPosition(item: T) : Int {
+        return _items.indexOf(item)
     }
 
     fun getItems() : List<T> {

@@ -69,6 +69,15 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         creature.rollInitiative()
         view.adapter.addItem(creature)
         view.adapter.sortByInt { -it.currentInit }
+
+        val index = view.adapter.getPosition(creature)
+
+        //Adjust if this changes the index of the selected item
+        if(index <= view.adapter.currentSelected) {
+            view.adapter.currentSelected += 1
+        }
+
+        //Remove from list of creatures that can be added
         charactersNotOnList.remove(creature)
     }
 
@@ -85,7 +94,15 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     }
 
     override fun initRemove(creature: Creature) {
+        val index = view.adapter.getPosition(creature)
         view.adapter.removeItem(creature)
+
+        //Adjust if this changes the index of the selected item
+        if(index < view.adapter.currentSelected) {
+            view.adapter.currentSelected -= 1
+        }
+
+        //Add back on list of creatures that can be added
         charactersNotOnList.add(creature)
     }
 }

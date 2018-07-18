@@ -19,7 +19,6 @@ class InitiativeListAdapter(items: List<Creature>, private val listener: Initiat
 
     var currentSelected: Int = 0
         set(value) {
-            val oldValue = field
             field = value
             notifyDataSetChanged()
         }
@@ -32,7 +31,7 @@ class InitiativeListAdapter(items: List<Creature>, private val listener: Initiat
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var adjustedPosition = position + currentSelected
         if(adjustedPosition >= itemCount) {
-            adjustedPosition = 0
+            adjustedPosition = adjustedPosition - itemCount
         }
         val item = getItem(adjustedPosition)
 
