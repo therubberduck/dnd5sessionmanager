@@ -23,9 +23,7 @@ class InitiativeView(context: Context?) : BaseScreenView<InitiativeScreen>(conte
     }
 
     fun setAdapter(listener: InitiativeListListener) {
-
         adapter = InitiativeListAdapter(listOf(), listener, _rclInitiative)
-
         _rclInitiative.adapter = adapter
     }
 

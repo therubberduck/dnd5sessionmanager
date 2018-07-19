@@ -1,6 +1,7 @@
 package com.dicemonger.campaignmanager.Frontend.Screens.Initiative
 
 import android.content.Context
+import com.dicemonger.campaignmanager.Data.DataProvider
 import com.dicemonger.campaignmanager.Model.Creature
 import com.wealthfront.magellan.Screen
 
@@ -38,12 +39,7 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     //
 
     fun setupCharacters() {
-        val creatures = listOf(
-                Creature("Hamelt", 2, 0),
-                Creature("Grommund", 5, 0),
-                Creature("Green", 1, 0),
-                Creature("Maxim", 4, 0)
-        )
+        val creatures = DataProvider.get().getCharacters()
         charactersNotOnList.addAll(creatures)
     }
 
