@@ -1,10 +1,21 @@
 <resources>
     <string name="app_name">Session Manager</string>
+
+    <!-- Global Strings -->
+    <string name="global_edit">Edit</string>
+    <string name="global_add">Add</string>
+
+    <!-- Main page -->
     <string name="initiative">Initiative</string>
     <string name="characters">Characters</string>
     <string name="credits">Credits</string>
 
+    <!-- Credits -->
     <string name="creditstext">Icons acquired from <a href="https://game-icons.net">https://game-icons.net</a> and
         made by <a href="http://lorcblog.blogspot.com">Lorc</a>, <a href="http://delapouite.com">Delapouite</a>
         and <a href="http://opengameart.org/content/95-game-icons">Sbed</a>.</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_charactername">Name</string>
+    <string name="dialog_initiative_short">Init</string>
 </resources>

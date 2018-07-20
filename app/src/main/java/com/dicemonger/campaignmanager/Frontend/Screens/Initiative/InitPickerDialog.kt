@@ -14,7 +14,7 @@ interface InitPickerDialogListener {
     fun creatureAdded(creature: Creature)
 }
 
-class InitPickerDialog(private val _context: Activity, private val _listener: InitPickerDialogListener, val creatures: ArrayList<Creature>) : AlertDialog(_context), ObjectListAdapterListener<Creature> {
+class InitPickerDialog(_context: Activity, private val _listener: InitPickerDialogListener, val creatures: ArrayList<Creature>) : AlertDialog(_context), ObjectListAdapterListener<Creature> {
 
     val _view : View
 

@@ -12,17 +12,17 @@
             android:id="@+id/edtName"
             android:layout_width="0dp" android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Name"/>
+            android:hint="@string/dialog_charactername"/>
         <EditText
             android:id="@+id/edtInit"
             android:layout_width="48dp" android:layout_height="wrap_content"
             android:inputType="numberSigned"
-            android:hint="Init"/>
+            android:hint="@string/dialog_initiative_short"/>
         <Button
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:backgroundTint="@color/accent"
-            android:text="Add"/>
+            android:text="@string/global_add"/>
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rclInitPicker"

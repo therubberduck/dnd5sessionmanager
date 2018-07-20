@@ -20,4 +20,16 @@ class DataProvider {
                 Creature("Master", 2, 0)
         )
     }
+
+    fun getCharacter(characterId: Int): Creature {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    fun add(character: Creature) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    fun update(character: Creature) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
