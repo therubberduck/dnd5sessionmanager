@@ -12,6 +12,7 @@
         android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         tools:listitem="@layout/cell_character"/>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAdd"

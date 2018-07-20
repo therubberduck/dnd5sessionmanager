@@ -18,7 +18,6 @@ class InitiativeView(context: Context?) : BaseScreenView<InitiativeScreen>(conte
         View.inflate(context, R.layout.vw_initiative, this)
 
         _rclInitiative = findViewById<RecyclerView>(R.id.lstInitiative)
-        _rclInitiative.layoutManager = LinearLayoutManager(context)
         _rclInitiative.addItemDecoration(RecyclerViewMargin(4, 1))
     }
 
