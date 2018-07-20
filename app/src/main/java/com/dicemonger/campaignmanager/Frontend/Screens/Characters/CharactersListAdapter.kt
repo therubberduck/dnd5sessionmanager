@@ -21,7 +21,7 @@ class CharactersListAdapter(items: List<Creature>, listener: ObjectListAdapterLi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
 
-        val text = item.name + "(" + item.currentInit + ")"
+        val text = item.name + " (" + item.prefixInitBonus + ")"
         holder.txtName.setText(text)
     }
 

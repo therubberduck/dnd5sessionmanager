@@ -13,14 +13,20 @@ class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Cre
 
         val characters = DataProvider.get().getCharacters()
 
-        view.setAdapter(this)
+        view.setAdapter(this, characters)
         view.adapter.sortByString { it.name }
+
+        view.setAddButton { createNewCharacter() }
 
         return view
     }
 
     override fun getContext(): Context {
         return activity
+    }
+
+    fun createNewCharacter() {
+
     }
 
     override fun itemClicked(item: Creature) {
