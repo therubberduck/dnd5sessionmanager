@@ -1,35 +1,86 @@
 package com.dicemonger.campaignmanager.Frontend.Screens.Characters
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import com.dicemonger.campaignmanager.Data.DataProvider
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Model.Creature
+import com.dicemonger.campaignmanager.R
 import com.wealthfront.magellan.Screen
 
-class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Creature> {
+class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Creature>, EditCharacterDialogListener {
+
+    var dialog: AlertDialog? = null
 
     override fun createView(context: Context): CharactersView {
         val view = CharactersView(context)
 
-        val characters = DataProvider.get().getCharacters()
+        val characters = DataProvider.get().getCharacters{
+            characters ->
+            view.setAdapter(this, characters)
+            view.adapter.sortByString { it.name }
+        }
 
-        view.setAdapter(this, characters)
-        view.adapter.sortByString { it.name }
+
 
         view.setAddButton { createNewCharacter() }
 
         return view
     }
 
+    fun createNewCharacter() {
+        EditCharacterDialog(activity, null, this)
+    }
+
+    //
+    // ObjectListAdapterListener functions
+    //
+
     override fun getContext(): Context {
         return activity
     }
 
-    fun createNewCharacter() {
-
+    override fun itemClicked(item: Creature) {
+        EditCharacterDialog(activity, item.id, this)
     }
 
-    override fun itemClicked(item: Creature) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    //Delete character
+    override fun itemLongClicked(character: Creature) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setMessage(R.string.dialog_deletecharacter_body)
+                .setTitle(R.string.dialog_deletecharacter_title)
+                .setPositiveButton(R.string.global_delete, object : DialogInterface.OnClickListener{
+                    override fun onClick(dialog: DialogInterface?, id: Int) {
+                        deleteCharacter(character)
+                    }
+                })
+                .setNegativeButton(R.string.global_cancel, object : DialogInterface.OnClickListener{
+                    override fun onClick(dialog: DialogInterface?, id: Int) {
+                        dialog?.dismiss()
+                    }
+                })
+
+        dialog = builder.create()
+        dialog?.show()
+    }
+
+    fun deleteCharacter(character: Creature) {
+        view.adapter.removeItem(character)
+        DataProvider.get().deleteCharacter(character.id!!)
+    }
+
+    //
+    // EditCharacterDialogListener functions
+    //
+
+    override fun characterAdded(character: Creature) {
+        view.adapter.addItem(character)
+        view.adapter.sortByString { it.name }
+    }
+
+    override fun characterEdited(character: Creature) {
+        view.adapter.replaceItem(character){it.id == character.id}
+        view.adapter.sortByString { it.name }
     }
 }

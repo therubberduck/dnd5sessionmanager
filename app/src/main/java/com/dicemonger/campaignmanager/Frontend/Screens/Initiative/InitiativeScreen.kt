@@ -7,25 +7,26 @@ import com.wealthfront.magellan.Screen
 
 class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitPickerDialogListener {
 
-    var currentCount = 0
     val charactersNotOnList = ArrayList<Creature>()
 
     override fun createView(context: Context?): InitiativeView {
         val view = InitiativeView(context)
-
-        setupCharacters()
 
         view.setAdapter(this)
         view.setNextButton { nextInitiative() }
         view.setAddButton{addInitiative()}
 
         //Add all characters by default
-        charactersNotOnList.forEach {
-            it.rollInitiative()
-            view.adapter.addItem(it)
+        DataProvider.get().getCharacters {
+            charactersNotOnList.addAll(it)
+
+            charactersNotOnList.forEach {
+                it.rollInitiative()
+                view.adapter.addItem(it)
+            }
+            charactersNotOnList.removeIf { true }
+            view.adapter.sortByInt { -it.currentInit }
         }
-        charactersNotOnList.removeIf { true }
-        view.adapter.sortByInt { -it.currentInit }
 
         return view
     }
@@ -37,11 +38,6 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     //
     // UI Setup
     //
-
-    fun setupCharacters() {
-        val creatures = DataProvider.get().getCharacters()
-        charactersNotOnList.addAll(creatures)
-    }
 
     fun addInitiative() {
         InitPickerDialog(activity, this, charactersNotOnList)

@@ -14,7 +14,7 @@ interface EditCharacterDialogListener {
     fun characterEdited(character: Creature)
 }
 
-class EditCharacterDialog(_context: Activity, _characterId: Int?, private val _listener: EditCharacterDialogListener) : AlertDialog(_context) {
+class EditCharacterDialog(_context: Activity, private val _characterId: Long?, private val _listener: EditCharacterDialogListener) : AlertDialog(_context) {
 
     val _view : View
 
@@ -27,10 +27,9 @@ class EditCharacterDialog(_context: Activity, _characterId: Int?, private val _l
     private val _isNewCharacter = _characterId == null
 
     init {
-        _view = _context.layoutInflater.inflate(R.layout.dialog_initpicker, null)
+        _view = _context.layoutInflater.inflate(R.layout.dialog_editcharacter, null)
         setView(_view)
 
-        setTitle("Add Combatant")
         setCancelable(true)
 
         _edtName = _view.findViewById(R.id.edtName)
@@ -38,12 +37,16 @@ class EditCharacterDialog(_context: Activity, _characterId: Int?, private val _l
         _btnAdd = _view.findViewById(R.id.btnAdd)
 
         if(_isNewCharacter) {
+            setTitle(_context.getString(R.string.dialog_createcharacter))
             _btnAdd.setText(R.string.global_add)
         }
         else {
-            val character = _data.getCharacter(_characterId!!)
-            _edtName.setText(character.name)
-            _edtInit.setText(character.initBonus)
+            setTitle(_context.getString(R.string.dialog_editcharacter))
+            _data.getCharacter(_characterId!!) {
+                character ->
+                _edtName.setText(character.name)
+                _edtInit.setText(character.initBonus.toString())
+            }
         }
 
         _btnAdd.setOnClickListener {submitCharacter() }
@@ -65,9 +68,12 @@ class EditCharacterDialog(_context: Activity, _characterId: Int?, private val _l
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val character = Creature(name.toString(), init.toString().toInt(), 0)
-            DataProvider.get().add(character)
-            _listener.characterAdded(character)
+            val characterDbo = Creature(name.toString(), init.toString().toInt())
+            DataProvider.get().add(characterDbo){
+                newCharacter ->
+                _listener.characterAdded(newCharacter)
+            }
+            cancel()
         }
     }
 
@@ -76,9 +82,10 @@ class EditCharacterDialog(_context: Activity, _characterId: Int?, private val _l
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val character = Creature(name.toString(), init.toString().toInt(), 0)
+            val character = Creature(_characterId, name.toString(), init.toString().toInt())
             DataProvider.get().update(character)
             _listener.characterEdited(character)
+            cancel()
         }
     }
 }

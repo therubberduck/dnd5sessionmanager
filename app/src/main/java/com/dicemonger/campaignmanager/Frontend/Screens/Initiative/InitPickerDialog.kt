@@ -27,7 +27,7 @@ class InitPickerDialog(_context: Activity, private val _listener: InitPickerDial
         _view = _context.layoutInflater.inflate(R.layout.dialog_initpicker, null)
         setView(_view)
 
-        setTitle("Add Combatant")
+        setTitle(_context.getString(R.string.dialog_addcombatant))
         setCancelable(true)
 
         _edtName = _view.findViewById(R.id.edtName)
@@ -52,7 +52,7 @@ class InitPickerDialog(_context: Activity, private val _listener: InitPickerDial
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val creature = Creature(name.toString(), init.toString().toInt(), 0)
+            val creature = Creature(name.toString(), init.toString().toInt())
             addCombatant(creature)
         }
     }

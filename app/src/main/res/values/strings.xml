@@ -2,8 +2,11 @@
     <string name="app_name">Session Manager</string>
 
     <!-- Global Strings -->
-    <string name="global_edit">Edit</string>
+    <string name="global_ok">Ok</string>
+    <string name="global_cancel">Cancel</string>
     <string name="global_add">Add</string>
+    <string name="global_edit">Edit</string>
+    <string name="global_delete">Delete</string>
 
     <!-- Main page -->
     <string name="initiative">Initiative</string>
@@ -16,6 +19,12 @@
         and <a href="http://opengameart.org/content/95-game-icons">Sbed</a>.</string>
 
     <!-- Dialogs -->
+    <string name="dialog_createcharacter">Create Character</string>
+    <string name="dialog_editcharacter">Edit Character</string>
+    <string name="dialog_addcombatant">Add Combatant</string>
     <string name="dialog_charactername">Name</string>
     <string name="dialog_initiative_short">Init</string>
+
+    <string name="dialog_deletecharacter_title">Delete Character</string>
+    <string name="dialog_deletecharacter_body">Do you wish to delete this character?</string>
 </resources>

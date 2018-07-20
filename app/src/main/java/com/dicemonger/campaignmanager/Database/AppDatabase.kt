@@ -2,16 +2,26 @@ package com.dicemonger.campaignmanager.Database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import com.dicemonger.campaignmanager.Database.Modules.CharacterModule
+import com.dicemonger.campaignmanager.Database.Schemas.CharacterSchema
+import com.dicemonger.campaignmanager.Database.Schemas.DbSchema
 import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
+import org.jetbrains.anko.db.createTable
 
-class AppDatabase(val context: Context) : ManagedSQLiteOpenHelper(context, "craftdb", null, dbVersion) {
+class AppDatabase(val context: Context) : ManagedSQLiteOpenHelper(context, dbName, null, dbVersion) {
 
     companion object {
+        private val dbName = "craftdb"
         private val dbVersion = 1
     }
 
-    override fun onCreate(p0: SQLiteDatabase?) {
+    private val schemas: List<DbSchema> =  listOf(CharacterSchema())
+    val Profile = CharacterModule(this)
 
+    override fun onCreate(db: SQLiteDatabase) {
+        for(schema in schemas) {
+            db.createTable(schema.tableName, true, *schema.columns)
+        }
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {

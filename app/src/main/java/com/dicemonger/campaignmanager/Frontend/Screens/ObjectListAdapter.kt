@@ -12,7 +12,8 @@ import com.dicemonger.campaignmanager.Model.Creature
 
 interface ObjectListAdapterListener<T> {
     fun getContext() : Context
-    fun itemClicked(item: T)
+    fun itemClicked(item: T) {}
+    fun itemLongClicked(item: T) {}
 }
 
 abstract class ObjectListAdapter<T, U: RecyclerView.ViewHolder>(items: List<T> = ArrayList<T>(), _context: Context, protected val _recyclerView: RecyclerView? = null)
@@ -49,6 +50,12 @@ abstract class ObjectListAdapter<T, U: RecyclerView.ViewHolder>(items: List<T> =
     fun removeItem(item: T) {
         _items.remove(item)
         notifyDataSetChanged()
+    }
+
+    fun replaceItem(newItem: T, selector: (T) -> Boolean) {
+        val oldItem = _items.find(selector)
+        _items.remove(oldItem)
+        _items.add(newItem)
     }
 
     fun setItems(items: List<T>) {

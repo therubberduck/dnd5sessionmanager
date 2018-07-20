@@ -2,7 +2,10 @@ package com.dicemonger.campaignmanager.Model
 
 import java.util.*
 
-data class Creature(val name: String, val initBonus: Int, var currentInit: Int) {
+data class Creature(val id: Long?, val name: String, val initBonus: Int, var currentInit: Int) {
+
+    constructor(id: Long?, name: String, initBonus: Int) : this(id, name, initBonus, 0)
+    constructor(name: String, initBonus: Int) : this(null, name, initBonus, 0)
 
     var isReadied = false
 

@@ -1,35 +1,42 @@
 package com.dicemonger.campaignmanager.Data
 
+import android.content.Context
+import com.dicemonger.campaignmanager.Database.AppDatabase
 import com.dicemonger.campaignmanager.Model.Creature
 
-class DataProvider {
+class DataProvider() {
+
+    private lateinit var _db: AppDatabase
 
     companion object {
         private val _instance = DataProvider()
+
+        fun initialize(context: Context) {
+            _instance._db = AppDatabase(context)
+        }
 
         fun get() : DataProvider {
             return _instance
         }
     }
 
-    fun getCharacters() : List<Creature> {
-        return listOf(
-                Creature("Samuel", 2, 0),
-                Creature("Heinrich", -1, 0),
-                Creature("Big Boy", 4, 0),
-                Creature("Master", 2, 0)
-        )
+    fun deleteCharacter(id: Long) {
+        _db.Profile.delete(id)
     }
 
-    fun getCharacter(characterId: Int): Creature {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun getCharacters(callback: (List<Creature>) -> Unit) {
+        _db.Profile.getAll(callback)
     }
 
-    fun add(character: Creature) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun getCharacter(id: Long, callback: (Creature) -> Unit) {
+        _db.Profile.get(id, callback)
+    }
+
+    fun add(character: Creature, callback: ((Creature) -> Unit)?) {
+        _db.Profile.add(character, callback)
     }
 
     fun update(character: Creature) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        _db.Profile.update(character)
     }
 }
