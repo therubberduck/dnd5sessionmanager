@@ -12,7 +12,7 @@
             android:id="@+id/edtName"
             android:layout_width="0dp" android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/dialog_charactername"/>
+            android:hint="@string/dialog_name"/>
         <EditText
             android:id="@+id/edtInit"
             android:layout_width="48dp" android:layout_height="wrap_content"

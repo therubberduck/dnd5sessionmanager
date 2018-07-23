@@ -1,4 +1,4 @@
-package com.dicemonger.campaignmanager.Frontend.Screens.Characters
+package com.dicemonger.campaignmanager.Frontend.Screens.Monsters
 
 import android.app.AlertDialog
 import android.content.Context
@@ -9,28 +9,28 @@ import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 import com.wealthfront.magellan.Screen
 
-class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Creature>, EditCharacterDialogListener {
+class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Creature>, NewMonsterDialogListener {
 
     var dialog: AlertDialog? = null
 
-    override fun createView(context: Context): CharactersView {
-        val view = CharactersView(context)
+    override fun createView(context: Context): MonstersView {
+        val view = MonstersView(context)
 
-        DataProvider.get().getCharacters{
-            characters ->
-            view.setAdapter(this, characters)
+        DataProvider.get().getMonsters{
+            monsters ->
+            view.setAdapter(this, monsters)
             view.adapter.sortByString { it.name }
         }
 
 
 
-        view.setAddButton { createNewCharacter() }
+        view.setAddButton { createNewMonster() }
 
         return view
     }
 
-    fun createNewCharacter() {
-        EditCharacterDialog(activity, null, this)
+    fun createNewMonster() {
+        NewMonsterDialog(activity, this)
     }
 
     //
@@ -42,17 +42,17 @@ class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Cre
     }
 
     override fun itemClicked(item: Creature) {
-        EditCharacterDialog(activity, item.id, this)
+        TODO("Edit Monster")
     }
 
     //Delete character
     override fun itemLongClicked(item: Creature) {
         val builder = AlertDialog.Builder(activity)
-        builder.setMessage(activity.getString(R.string.dialog_deletecharacter_body, item.name))
-                .setTitle(R.string.dialog_deletecharacter_title)
+        builder.setMessage(activity.getString(R.string.dialog_deletemonster_body, item.name))
+                .setTitle(R.string.dialog_deletemonster_title)
                 .setPositiveButton(R.string.global_delete, object : DialogInterface.OnClickListener{
                     override fun onClick(dialog: DialogInterface?, id: Int) {
-                        deleteCharacter(item)
+                        deleteMonster(item)
                     }
                 })
                 .setNegativeButton(R.string.global_cancel, object : DialogInterface.OnClickListener{
@@ -65,22 +65,17 @@ class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Cre
         dialog?.show()
     }
 
-    fun deleteCharacter(character: Creature) {
-        view.adapter.removeItem(character)
-        DataProvider.get().delete(character)
+    fun deleteMonster(monster: Creature) {
+        view.adapter.removeItem(monster)
+        DataProvider.get().delete(monster)
     }
 
     //
-    // EditCharacterDialogListener functions
+    // NewMonsterDialogListener functions
     //
 
-    override fun characterAdded(character: Creature) {
+    override fun monsterAdded(character: Creature) {
         view.adapter.addItem(character)
-        view.adapter.sortByString { it.name }
-    }
-
-    override fun characterEdited(character: Creature) {
-        view.adapter.replaceItem(character){it.id == character.id}
         view.adapter.sortByString { it.name }
     }
 }

@@ -11,6 +11,7 @@
     <!-- Main page -->
     <string name="initiative">Initiative</string>
     <string name="characters">Characters</string>
+    <string name="monsters">Monsters</string>
     <string name="credits">Credits</string>
 
     <!-- Credits -->
@@ -20,11 +21,16 @@
 
     <!-- Dialogs -->
     <string name="dialog_createcharacter">Create Character</string>
+    <string name="dialog_createmonster">Create Monster</string>
     <string name="dialog_editcharacter">Edit Character</string>
     <string name="dialog_addcombatant">Add Combatant</string>
-    <string name="dialog_charactername">Name</string>
+
+    <string name="dialog_name">Name</string>
     <string name="dialog_initiative_short">Init</string>
 
     <string name="dialog_deletecharacter_title">Delete Character</string>
-    <string name="dialog_deletecharacter_body">Do you wish to delete this character?</string>
+    <string name="dialog_deletecharacter_body">Do you wish to delete %1$s?</string>
+
+    <string name="dialog_deletemonster_title">Delete Monster</string>
+    <string name="dialog_deletemonster_body">Do you wish to delete the %1$s monster?</string>
 </resources>

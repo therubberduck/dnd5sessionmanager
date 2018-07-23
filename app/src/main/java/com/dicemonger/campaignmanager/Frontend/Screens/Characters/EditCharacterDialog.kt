@@ -68,8 +68,8 @@ class EditCharacterDialog(_context: Activity, private val _characterId: Long?, p
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val characterDbo = Creature(name.toString(), init.toString().toInt())
-            DataProvider.get().add(characterDbo){
+            val characterDbo = Creature(name.toString(), init.toString().toInt(), false)
+            _data.add(characterDbo){
                 newCharacter ->
                 _listener.characterAdded(newCharacter)
             }
@@ -82,8 +82,8 @@ class EditCharacterDialog(_context: Activity, private val _characterId: Long?, p
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val character = Creature(_characterId, name.toString(), init.toString().toInt())
-            DataProvider.get().update(character)
+            val character = Creature(_characterId, name.toString(), init.toString().toInt(), false)
+            _data.update(character)
             _listener.characterEdited(character)
             cancel()
         }

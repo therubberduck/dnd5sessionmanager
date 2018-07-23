@@ -20,23 +20,42 @@ class DataProvider() {
         }
     }
 
-    fun deleteCharacter(id: Long) {
-        _db.Profile.delete(id)
+    fun add(creature: Creature, callback: ((Creature) -> Unit)?) {
+        if(creature.isMonster) {
+            _db.Monsters.add(creature, callback)
+        }
+        else {
+            _db.Characters.add(creature, callback)
+        }
+    }
+
+    fun delete(creature: Creature) {
+        if(creature.isMonster) {
+            _db.Monsters.delete(creature.id!!)
+        }
+        else {
+            _db.Characters.delete(creature.id!!)
+        }
     }
 
     fun getCharacters(callback: (List<Creature>) -> Unit) {
-        _db.Profile.getAll(callback)
+        _db.Characters.getAll(callback)
     }
 
     fun getCharacter(id: Long, callback: (Creature) -> Unit) {
-        _db.Profile.get(id, callback)
+        _db.Characters.get(id, callback)
     }
 
-    fun add(character: Creature, callback: ((Creature) -> Unit)?) {
-        _db.Profile.add(character, callback)
+    fun getMonsters(callback: (List<Creature>) -> Unit) {
+        _db.Monsters.getAll(callback)
     }
 
-    fun update(character: Creature) {
-        _db.Profile.update(character)
+    fun update(creature: Creature) {
+        if(creature.isMonster) {
+            _db.Monsters.update(creature)
+        }
+        else {
+            _db.Characters.update(creature)
+        }
     }
 }

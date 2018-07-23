@@ -52,7 +52,7 @@ class InitPickerDialog(_context: Activity, private val _listener: InitPickerDial
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val creature = Creature(name.toString(), init.toString().toInt())
+            val creature = Creature(name.toString(), init.toString().toInt(), false)
             addCombatant(creature)
         }
     }

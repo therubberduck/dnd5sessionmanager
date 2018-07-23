@@ -3,8 +3,10 @@ package com.dicemonger.campaignmanager.Database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.dicemonger.campaignmanager.Database.Modules.CharacterModule
+import com.dicemonger.campaignmanager.Database.Modules.MonsterModule
 import com.dicemonger.campaignmanager.Database.Schemas.CharacterSchema
 import com.dicemonger.campaignmanager.Database.Schemas.DbSchema
+import com.dicemonger.campaignmanager.Database.Schemas.MonsterSchema
 import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
 import org.jetbrains.anko.db.createTable
 
@@ -15,8 +17,9 @@ class AppDatabase(val context: Context) : ManagedSQLiteOpenHelper(context, dbNam
         private val dbVersion = 1
     }
 
-    private val schemas: List<DbSchema> =  listOf(CharacterSchema())
-    val Profile = CharacterModule(this)
+    private val schemas: List<DbSchema> =  listOf(CharacterSchema(), MonsterSchema())
+    val Characters = CharacterModule(this)
+    val Monsters = MonsterModule(this)
 
     override fun onCreate(db: SQLiteDatabase) {
         for(schema in schemas) {
