@@ -6,12 +6,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.dicemonger.campaignmanager.Data.DataProvider
+import com.dicemonger.campaignmanager.Model.Character
 import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
 interface EditCharacterDialogListener {
-    fun characterAdded(character: Creature)
-    fun characterEdited(character: Creature)
+    fun characterAdded(character: Character)
+    fun characterEdited(character: Character)
 }
 
 class EditCharacterDialog(_context: Activity, private val _characterId: Long?, private val _listener: EditCharacterDialogListener) : AlertDialog(_context) {
@@ -68,7 +69,7 @@ class EditCharacterDialog(_context: Activity, private val _characterId: Long?, p
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val characterDbo = Creature(name.toString(), init.toString().toInt(), false)
+            val characterDbo = Character(-1, name.toString(), init.toString().toInt())
             _data.add(characterDbo){
                 newCharacter ->
                 _listener.characterAdded(newCharacter)
@@ -82,7 +83,7 @@ class EditCharacterDialog(_context: Activity, private val _characterId: Long?, p
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val character = Creature(_characterId, name.toString(), init.toString().toInt(), false)
+            val character = Character(_characterId!!, name.toString(), init.toString().toInt())
             _data.update(character)
             _listener.characterEdited(character)
             cancel()

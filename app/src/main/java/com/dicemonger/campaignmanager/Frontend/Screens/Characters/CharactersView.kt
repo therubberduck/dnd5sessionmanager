@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Frontend.Screens.RecyclerViewMargin
+import com.dicemonger.campaignmanager.Model.Character
 import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 import com.wealthfront.magellan.BaseScreenView
@@ -23,7 +24,7 @@ class CharactersView(context: Context) : BaseScreenView<CharactersScreen>(contex
         _list.addItemDecoration(RecyclerViewMargin(8, 1))
     }
 
-    fun setAdapter(listener: ObjectListAdapterListener<Creature>, characters: List<Creature>) {
+    fun setAdapter(listener: ObjectListAdapterListener<Character>, characters: List<Character>) {
         adapter = CharactersListAdapter(characters, listener, _list)
         _list.adapter = adapter
     }

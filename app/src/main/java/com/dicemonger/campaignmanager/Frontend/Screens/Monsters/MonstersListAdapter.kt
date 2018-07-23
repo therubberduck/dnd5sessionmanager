@@ -7,11 +7,11 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapter
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
-import com.dicemonger.campaignmanager.Model.Creature
+import com.dicemonger.campaignmanager.Model.Monster
 import com.dicemonger.campaignmanager.R
 
-class MonstersListAdapter(items: List<Creature>, private val listener: ObjectListAdapterListener<Creature>, listitem: RecyclerView) :
-        ObjectListAdapter<Creature, MonstersListAdapter.ViewHolder> (items, listener.getContext(), listitem) {
+class MonstersListAdapter(items: List<Monster>, private val listener: ObjectListAdapterListener<Monster>, listitem: RecyclerView) :
+        ObjectListAdapter<Monster, MonstersListAdapter.ViewHolder> (items, listener.getContext(), listitem) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val cell = _inflater.inflate(R.layout.cell_character, null)

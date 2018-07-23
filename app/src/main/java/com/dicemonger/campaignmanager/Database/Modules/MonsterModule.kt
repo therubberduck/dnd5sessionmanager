@@ -1,17 +1,16 @@
 package com.dicemonger.campaignmanager.Database.Modules
 
 import com.dicemonger.campaignmanager.Database.AppDatabase
-import com.dicemonger.campaignmanager.Database.Schemas.CharacterSchema
 import com.dicemonger.campaignmanager.Database.Schemas.MonsterSchema
-import com.dicemonger.campaignmanager.Model.Creature
+import com.dicemonger.campaignmanager.Model.Monster
 import org.jetbrains.anko.db.*
 
 class MonsterModule(db: AppDatabase) : DbModule(db) {
 
-    fun add(creature: Creature, callback: ((Creature) -> Unit)?) {
+    fun add(monster: Monster, callback: ((Monster) -> Unit)?) {
         _db.use {
-            val name = creature.name
-            val init = creature.initBonus
+            val name = monster.name
+            val init = monster.initBonus
 
             val id = insertOrThrow(
                     MonsterSchema.tableName,
@@ -25,7 +24,7 @@ class MonsterModule(db: AppDatabase) : DbModule(db) {
         }
     }
 
-    fun get(id: Long, callback: (Creature) -> Unit) {
+    fun get(id: Long, callback: (Monster) -> Unit) {
         _db.use {
             val whereString = MonsterSchema.id + " = " + id
             select(MonsterSchema.tableName).whereArgs(whereString).exec {
@@ -35,7 +34,7 @@ class MonsterModule(db: AppDatabase) : DbModule(db) {
         }
     }
 
-    fun getAll(callback: (List<Creature>) -> Unit){
+    fun getAll(callback: (List<Monster>) -> Unit){
         _db.use {
             select(MonsterSchema.tableName).orderBy(MonsterSchema.name).exec {
                 val items = parseList(MonsterSchema.rowParser)
@@ -52,12 +51,12 @@ class MonsterModule(db: AppDatabase) : DbModule(db) {
         }
     }
 
-    fun update(creature: Creature) {
+    fun update(monster: Monster) {
         _db.use {
-            val name = creature.name
-            val init = creature.initBonus
+            val name = monster.name
+            val init = monster.initBonus
 
-            val whereString = MonsterSchema.id + " = " + creature.id
+            val whereString = MonsterSchema.id + " = " + monster.id
 
             update(MonsterSchema.tableName,
                     MonsterSchema.name to name, MonsterSchema.init to init)

@@ -7,6 +7,7 @@ import android.view.View
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Frontend.Screens.RecyclerViewMargin
 import com.dicemonger.campaignmanager.Model.Creature
+import com.dicemonger.campaignmanager.Model.Monster
 import com.dicemonger.campaignmanager.R
 import com.wealthfront.magellan.BaseScreenView
 import com.wealthfront.magellan.ScreenView
@@ -23,7 +24,7 @@ class MonstersView(context: Context) : BaseScreenView<MonstersScreen>(context) {
         _list.addItemDecoration(RecyclerViewMargin(8, 1))
     }
 
-    fun setAdapter(listener: ObjectListAdapterListener<Creature>, characters: List<Creature>) {
+    fun setAdapter(listener: ObjectListAdapterListener<Monster>, characters: List<Monster>) {
         adapter = MonstersListAdapter(characters, listener, _list)
         _list.adapter = adapter
     }

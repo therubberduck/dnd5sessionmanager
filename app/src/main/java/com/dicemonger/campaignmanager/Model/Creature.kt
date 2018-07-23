@@ -2,9 +2,12 @@ package com.dicemonger.campaignmanager.Model
 
 import java.util.*
 
-data class Creature(val id: Long?, val name: String, val initBonus: Int, val isMonster: Boolean) {
+open class Creature(val id: Long, val name: String, val initBonus: Int) {
 
-    constructor(name: String, initBonus: Int, isMonster: Boolean) : this(null, name, initBonus, isMonster)
+    val isMonster: Boolean
+    get() {
+        return this is Monster
+    }
 
     val prefixInitBonus: String
         get() {

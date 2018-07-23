@@ -8,11 +8,12 @@ import android.widget.TextView
 import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.InitiativeListAdapter
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapter
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
+import com.dicemonger.campaignmanager.Model.Character
 import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
-class CharactersListAdapter(items: List<Creature>, private val listener: ObjectListAdapterListener<Creature>, listitem: RecyclerView) :
-        ObjectListAdapter<Creature, CharactersListAdapter.ViewHolder>(items, listener.getContext(), listitem) {
+class CharactersListAdapter(items: List<Character>, private val listener: ObjectListAdapterListener<Character>, listitem: RecyclerView) :
+        ObjectListAdapter<Character, CharactersListAdapter.ViewHolder>(items, listener.getContext(), listitem) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val cell = _inflater.inflate(R.layout.cell_character, null)

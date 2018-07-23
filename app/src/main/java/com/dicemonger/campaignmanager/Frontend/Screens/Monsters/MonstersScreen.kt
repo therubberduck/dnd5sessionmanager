@@ -6,10 +6,11 @@ import android.content.DialogInterface
 import com.dicemonger.campaignmanager.Data.DataProvider
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Model.Creature
+import com.dicemonger.campaignmanager.Model.Monster
 import com.dicemonger.campaignmanager.R
 import com.wealthfront.magellan.Screen
 
-class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Creature>, NewMonsterDialogListener {
+class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Monster>, NewMonsterDialogListener {
 
     var dialog: AlertDialog? = null
 
@@ -21,8 +22,6 @@ class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Creatur
             view.setAdapter(this, monsters)
             view.adapter.sortByString { it.name }
         }
-
-
 
         view.setAddButton { createNewMonster() }
 
@@ -41,12 +40,12 @@ class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Creatur
         return activity
     }
 
-    override fun itemClicked(item: Creature) {
+    override fun itemClicked(item: Monster) {
         TODO("Edit Monster")
     }
 
     //Delete character
-    override fun itemLongClicked(item: Creature) {
+    override fun itemLongClicked(item: Monster) {
         val builder = AlertDialog.Builder(activity)
         builder.setMessage(activity.getString(R.string.dialog_deletemonster_body, item.name))
                 .setTitle(R.string.dialog_deletemonster_title)
@@ -65,7 +64,7 @@ class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Creatur
         dialog?.show()
     }
 
-    fun deleteMonster(monster: Creature) {
+    fun deleteMonster(monster: Monster) {
         view.adapter.removeItem(monster)
         DataProvider.get().delete(monster)
     }
@@ -74,8 +73,8 @@ class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Creatur
     // NewMonsterDialogListener functions
     //
 
-    override fun monsterAdded(character: Creature) {
-        view.adapter.addItem(character)
+    override fun monsterAdded(monster: Monster) {
+        view.adapter.addItem(monster)
         view.adapter.sortByString { it.name }
     }
 }

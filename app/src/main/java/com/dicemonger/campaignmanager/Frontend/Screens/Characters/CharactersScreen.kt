@@ -5,11 +5,12 @@ import android.content.Context
 import android.content.DialogInterface
 import com.dicemonger.campaignmanager.Data.DataProvider
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
+import com.dicemonger.campaignmanager.Model.Character
 import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 import com.wealthfront.magellan.Screen
 
-class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Creature>, EditCharacterDialogListener {
+class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Character>, EditCharacterDialogListener {
 
     var dialog: AlertDialog? = null
 
@@ -41,12 +42,12 @@ class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Cre
         return activity
     }
 
-    override fun itemClicked(item: Creature) {
+    override fun itemClicked(item: Character) {
         EditCharacterDialog(activity, item.id, this)
     }
 
     //Delete character
-    override fun itemLongClicked(item: Creature) {
+    override fun itemLongClicked(item: Character) {
         val builder = AlertDialog.Builder(activity)
         builder.setMessage(activity.getString(R.string.dialog_deletecharacter_body, item.name))
                 .setTitle(R.string.dialog_deletecharacter_title)
@@ -65,7 +66,7 @@ class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Cre
         dialog?.show()
     }
 
-    fun deleteCharacter(character: Creature) {
+    fun deleteCharacter(character: Character) {
         view.adapter.removeItem(character)
         DataProvider.get().delete(character)
     }
@@ -74,12 +75,12 @@ class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Cre
     // EditCharacterDialogListener functions
     //
 
-    override fun characterAdded(character: Creature) {
+    override fun characterAdded(character: Character) {
         view.adapter.addItem(character)
         view.adapter.sortByString { it.name }
     }
 
-    override fun characterEdited(character: Creature) {
+    override fun characterEdited(character: Character) {
         view.adapter.replaceItem(character){it.id == character.id}
         view.adapter.sortByString { it.name }
     }

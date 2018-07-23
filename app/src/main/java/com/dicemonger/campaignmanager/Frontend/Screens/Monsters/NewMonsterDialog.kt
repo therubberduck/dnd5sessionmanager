@@ -7,10 +7,11 @@ import android.widget.Button
 import android.widget.EditText
 import com.dicemonger.campaignmanager.Data.DataProvider
 import com.dicemonger.campaignmanager.Model.Creature
+import com.dicemonger.campaignmanager.Model.Monster
 import com.dicemonger.campaignmanager.R
 
 interface NewMonsterDialogListener {
-    fun monsterAdded(character: Creature)
+    fun monsterAdded(monster: Monster)
 }
 
 class NewMonsterDialog (_context: Activity, private val _listener: NewMonsterDialogListener) : AlertDialog(_context) {
@@ -45,7 +46,7 @@ class NewMonsterDialog (_context: Activity, private val _listener: NewMonsterDia
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val monsterDbo = Creature(name.toString(), init.toString().toInt(), true)
+            val monsterDbo = Monster(-1, name.toString(), init.toString().toInt())
             _data.add(monsterDbo){
                 newMonster ->
                 _listener.monsterAdded(newMonster)

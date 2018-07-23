@@ -2,7 +2,9 @@ package com.dicemonger.campaignmanager.Data
 
 import android.content.Context
 import com.dicemonger.campaignmanager.Database.AppDatabase
+import com.dicemonger.campaignmanager.Model.Character
 import com.dicemonger.campaignmanager.Model.Creature
+import com.dicemonger.campaignmanager.Model.Monster
 
 class DataProvider() {
 
@@ -20,29 +22,27 @@ class DataProvider() {
         }
     }
 
-    fun add(creature: Creature, callback: ((Creature) -> Unit)?) {
-        if(creature.isMonster) {
-            _db.Monsters.add(creature, callback)
-        }
-        else {
-            _db.Characters.add(creature, callback)
-        }
+    fun add(character: Character, callback: ((Character) -> Unit)?) {
+        _db.Characters.add(character, callback)
     }
 
-    fun delete(creature: Creature) {
-        if(creature.isMonster) {
-            _db.Monsters.delete(creature.id!!)
-        }
-        else {
-            _db.Characters.delete(creature.id!!)
-        }
+    fun add(monster: Monster, callback: ((Monster) -> Unit)?) {
+        _db.Monsters.add(monster, callback)
     }
 
-    fun getCharacters(callback: (List<Creature>) -> Unit) {
+    fun delete(character: Character) {
+        _db.Characters.delete(character.id)
+    }
+
+    fun delete(monster: Monster) {
+        _db.Monsters.delete(monster.id)
+    }
+
+    fun getCharacters(callback: (List<Character>) -> Unit) {
         _db.Characters.getAll(callback)
     }
 
-    fun getCharacter(id: Long, callback: (Creature) -> Unit) {
+    fun getCharacter(id: Long, callback: (Character) -> Unit) {
         _db.Characters.get(id, callback)
     }
 
@@ -50,16 +50,15 @@ class DataProvider() {
         _db.Creatures.getAll(callback)
     }
 
-    fun getMonsters(callback: (List<Creature>) -> Unit) {
+    fun getMonsters(callback: (List<Monster>) -> Unit) {
         _db.Monsters.getAll(callback)
     }
 
-    fun update(creature: Creature) {
-        if(creature.isMonster) {
-            _db.Monsters.update(creature)
-        }
-        else {
-            _db.Characters.update(creature)
-        }
+    fun update(character: Character) {
+        _db.Characters.update(character)
+    }
+
+    fun update(monster: Monster) {
+        _db.Monsters.update(monster)
     }
 }

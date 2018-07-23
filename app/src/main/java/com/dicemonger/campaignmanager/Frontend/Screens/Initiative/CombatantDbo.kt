@@ -11,7 +11,7 @@ data class CombatantDbo (val id: Long, val name: String, val initBonus: Int, val
         }
 
         fun create(creature: Creature) : CombatantDbo {
-            return CombatantDbo(creature.id!!, creature.name, creature.initBonus, creature.isMonster, 0)
+            return CombatantDbo(creature.id, creature.name, creature.initBonus, creature.isMonster, 0)
         }
     }
 

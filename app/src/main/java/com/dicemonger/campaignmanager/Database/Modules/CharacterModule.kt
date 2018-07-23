@@ -2,15 +2,15 @@ package com.dicemonger.campaignmanager.Database.Modules
 
 import com.dicemonger.campaignmanager.Database.AppDatabase
 import com.dicemonger.campaignmanager.Database.Schemas.CharacterSchema
-import com.dicemonger.campaignmanager.Model.Creature
+import com.dicemonger.campaignmanager.Model.Character
 import org.jetbrains.anko.db.*
 
 class CharacterModule(db: AppDatabase) : DbModule(db) {
 
-    fun add(creature: Creature, callback: ((Creature) -> Unit)?) {
+    fun add(character: Character, callback: ((Character) -> Unit)?) {
         _db.use {
-            val name = creature.name
-            val init = creature.initBonus
+            val name = character.name
+            val init = character.initBonus
 
             val id = insertOrThrow(
                     CharacterSchema.tableName,
@@ -24,7 +24,7 @@ class CharacterModule(db: AppDatabase) : DbModule(db) {
         }
     }
 
-    fun get(id: Long, callback: (Creature) -> Unit) {
+    fun get(id: Long, callback: (Character) -> Unit) {
         _db.use {
             val whereString = CharacterSchema.id + " = " + id
             select(CharacterSchema.tableName).whereArgs(whereString).exec {
@@ -34,7 +34,7 @@ class CharacterModule(db: AppDatabase) : DbModule(db) {
         }
     }
 
-    fun getAll(callback: (List<Creature>) -> Unit){
+    fun getAll(callback: (List<Character>) -> Unit){
         _db.use {
             select(CharacterSchema.tableName).orderBy(CharacterSchema.name).exec {
                 val items = parseList(CharacterSchema.rowParser)
@@ -51,12 +51,12 @@ class CharacterModule(db: AppDatabase) : DbModule(db) {
         }
     }
 
-    fun update(creature: Creature) {
+    fun update(character: Character) {
         _db.use {
-            val name = creature.name
-            val init = creature.initBonus
+            val name = character.name
+            val init = character.initBonus
 
-            val whereString = CharacterSchema.id + " = " + creature.id
+            val whereString = CharacterSchema.id + " = " + character.id
 
             update(CharacterSchema.tableName,
                     CharacterSchema.name to name, CharacterSchema.init to init)
