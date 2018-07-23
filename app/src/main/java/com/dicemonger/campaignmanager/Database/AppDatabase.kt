@@ -3,6 +3,7 @@ package com.dicemonger.campaignmanager.Database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.dicemonger.campaignmanager.Database.Modules.CharacterModule
+import com.dicemonger.campaignmanager.Database.Modules.CreatureModule
 import com.dicemonger.campaignmanager.Database.Modules.MonsterModule
 import com.dicemonger.campaignmanager.Database.Schemas.CharacterSchema
 import com.dicemonger.campaignmanager.Database.Schemas.DbSchema
@@ -18,7 +19,9 @@ class AppDatabase(val context: Context) : ManagedSQLiteOpenHelper(context, dbNam
     }
 
     private val schemas: List<DbSchema> =  listOf(CharacterSchema(), MonsterSchema())
+
     val Characters = CharacterModule(this)
+    val Creatures = CreatureModule(this)
     val Monsters = MonsterModule(this)
 
     override fun onCreate(db: SQLiteDatabase) {

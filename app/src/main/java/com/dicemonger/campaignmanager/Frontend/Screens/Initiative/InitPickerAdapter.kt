@@ -9,12 +9,8 @@ import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
-class InitPickerAdapter(items: List<Creature>, private val listener: ObjectListAdapterListener<Creature>, listview: RecyclerView) :
-        ObjectListAdapter<Creature, InitPickerAdapter.ViewHolder>(items, listener.getContext(), listview) {
-
-    init {
-        sortByString { it.name }
-    }
+class InitPickerAdapter(items: List<CombatantDbo>, private val listener: ObjectListAdapterListener<CombatantDbo>, listview: RecyclerView) :
+        ObjectListAdapter<CombatantDbo, InitPickerAdapter.ViewHolder>(items, listener.getContext(), listview) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): InitPickerAdapter.ViewHolder {
         val cell = _inflater.inflate(R.layout.cell_initpicker, null)
@@ -24,10 +20,15 @@ class InitPickerAdapter(items: List<Creature>, private val listener: ObjectListA
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
 
-        val text = item.name + "(" + item.prefixInitBonus + ")"
-        holder.txtScreenName.setText(text)
+        if(item.canAddToList) {
+            val text = item.name + " (" + item.prefixInitBonus + ")"
+            holder.txtScreenName.setText(text)
 
-        holder.frmCell.setOnClickListener { listener.itemClicked(item) }
+            holder.frmCell.setOnClickListener { listener.itemClicked(item) }
+        }
+        else {
+            holder.frmCell.visibility = View.GONE
+        }
     }
 
     class ViewHolder(cell: View) : RecyclerView.ViewHolder(cell) {

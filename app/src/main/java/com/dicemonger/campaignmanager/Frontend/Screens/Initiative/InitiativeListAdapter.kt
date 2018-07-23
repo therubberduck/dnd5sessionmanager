@@ -9,13 +9,13 @@ import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
-interface InitiativeListListener : ObjectListAdapterListener<Creature> {
-    fun initReady(creature: Creature)
-    fun initRemove(creature: Creature)
+interface InitiativeListListener : ObjectListAdapterListener<CombatantDbo> {
+    fun initReady(combatant: CombatantDbo)
+    fun initRemove(combatant: CombatantDbo)
 }
 
-class InitiativeListAdapter(items: List<Creature>, private val listener: InitiativeListListener, listview: RecyclerView) :
-        ObjectListAdapter<Creature, InitiativeListAdapter.ViewHolder>(items, listener.getContext(), listview) {
+class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: InitiativeListListener, listview: RecyclerView) :
+        ObjectListAdapter<CombatantDbo, InitiativeListAdapter.ViewHolder>(items, listener.getContext(), listview) {
 
     var currentSelected: Int = 0
         set(value) {
@@ -38,7 +38,7 @@ class InitiativeListAdapter(items: List<Creature>, private val listener: Initiat
         val isActive = position == 0
         holder.vwIsActive.isActive = isActive
 
-        val text = item.name + "(" + item.currentInit + ")"
+        val text = item.name + " (" + item.currentInit + ")"
         holder.txtScreenName.setText(text)
 
         if(item.isReadied) {

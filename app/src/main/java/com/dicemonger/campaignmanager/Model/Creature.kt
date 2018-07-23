@@ -2,12 +2,9 @@ package com.dicemonger.campaignmanager.Model
 
 import java.util.*
 
-data class Creature(val id: Long?, val name: String, val initBonus: Int, val isMonster: Boolean, var currentInit: Int) {
+data class Creature(val id: Long?, val name: String, val initBonus: Int, val isMonster: Boolean) {
 
-    constructor(id: Long?, name: String, initBonus: Int, isMonster: Boolean) : this(id, name, initBonus, isMonster,0)
-    constructor(name: String, initBonus: Int, isMonster: Boolean) : this(null, name, initBonus, isMonster,0)
-
-    var isReadied = false
+    constructor(name: String, initBonus: Int, isMonster: Boolean) : this(null, name, initBonus, isMonster)
 
     val prefixInitBonus: String
         get() {
@@ -16,8 +13,4 @@ data class Creature(val id: Long?, val name: String, val initBonus: Int, val isM
             }
             return "+" + initBonus
         }
-
-    fun rollInitiative() {
-        currentInit = Random().nextInt(20) + 1 + initBonus
-    }
 }

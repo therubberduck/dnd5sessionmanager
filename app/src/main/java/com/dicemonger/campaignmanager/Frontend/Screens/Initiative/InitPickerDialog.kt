@@ -11,10 +11,10 @@ import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
 interface InitPickerDialogListener {
-    fun creatureAdded(creature: Creature)
+    fun combatantAdded(combatant: CombatantDbo)
 }
 
-class InitPickerDialog(_context: Activity, private val _listener: InitPickerDialogListener, val creatures: ArrayList<Creature>) : AlertDialog(_context), ObjectListAdapterListener<Creature> {
+class InitPickerDialog(_context: Activity, private val _listener: InitPickerDialogListener, val creatures: ArrayList<CombatantDbo>) : AlertDialog(_context), ObjectListAdapterListener<CombatantDbo> {
 
     val _view : View
 
@@ -43,7 +43,7 @@ class InitPickerDialog(_context: Activity, private val _listener: InitPickerDial
         show()
     }
 
-    override fun itemClicked(item: Creature) {
+    override fun itemClicked(item: CombatantDbo) {
         addCombatant(item)
     }
 
@@ -52,13 +52,13 @@ class InitPickerDialog(_context: Activity, private val _listener: InitPickerDial
         val init = _edtInit.text
 
         if(!name.isBlank() && !init.isBlank()){
-            val creature = Creature(name.toString(), init.toString().toInt(), false)
-            addCombatant(creature)
+            val combatant = CombatantDbo.create(name.toString(), init.toString().toInt())
+            addCombatant(combatant)
         }
     }
 
-    fun addCombatant(combatant: Creature) {
-        _listener.creatureAdded(combatant)
+    fun addCombatant(combatant: CombatantDbo) {
+        _listener.combatantAdded(combatant)
         cancel()
     }
 }

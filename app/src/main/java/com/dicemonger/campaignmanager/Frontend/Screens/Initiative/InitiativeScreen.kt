@@ -2,12 +2,11 @@ package com.dicemonger.campaignmanager.Frontend.Screens.Initiative
 
 import android.content.Context
 import com.dicemonger.campaignmanager.Data.DataProvider
-import com.dicemonger.campaignmanager.Model.Creature
 import com.wealthfront.magellan.Screen
 
 class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitPickerDialogListener {
 
-    val charactersNotOnList = ArrayList<Creature>()
+    val combatants = ArrayList<CombatantDbo>()
 
     override fun createView(context: Context?): InitiativeView {
         val view = InitiativeView(context)
@@ -17,14 +16,18 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         view.setAddButton{addInitiative()}
 
         //Add all characters by default
-        DataProvider.get().getCharacters {
-            charactersNotOnList.addAll(it)
-
-            charactersNotOnList.forEach {
-                it.rollInitiative()
-                view.adapter.addItem(it)
+        DataProvider.get().getCreatures {
+            it.forEach {
+                creature ->
+                val combatant = CombatantDbo.create(creature)
+                combatant.rollInitiative()
+                combatants.add(combatant)
+                if(!combatant.isMonster) {
+                    view.adapter.addItem(combatant)
+                    combatant.canAddToList = false
+                }
             }
-            charactersNotOnList.removeIf { true }
+
             view.adapter.sortByInt { -it.currentInit }
         }
 
@@ -40,7 +43,7 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     //
 
     fun addInitiative() {
-        InitPickerDialog(activity, this, charactersNotOnList)
+        InitPickerDialog(activity, this, combatants)
     }
 
     fun nextInitiative() {
@@ -60,12 +63,20 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     // Init Picker
     //
 
-    override fun creatureAdded(creature: Creature) {
-        creature.rollInitiative()
-        view.adapter.addItem(creature)
+    override fun combatantAdded(pickerObject: CombatantDbo) {
+        val listObject: CombatantDbo
+        if(pickerObject.isMonster) {
+            listObject = pickerObject.copy()
+        }
+        else {
+            listObject = pickerObject
+        }
+
+        listObject.rollInitiative()
+        view.adapter.addItem(listObject)
         view.adapter.sortByInt { -it.currentInit }
 
-        val index = view.adapter.getPosition(creature)
+        val index = view.adapter.getPosition(listObject)
 
         //Adjust if this changes the index of the selected item
         if(index <= view.adapter.currentSelected) {
@@ -73,25 +84,28 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         }
 
         //Remove from list of creatures that can be added
-        charactersNotOnList.remove(creature)
+        if(!pickerObject.isMonster) {
+            pickerObject.canAddToList = true
+        }
+
     }
 
     //
     // Cell Handling
     //
 
-    override fun itemClicked(item: Creature) {
+    override fun itemClicked(item: CombatantDbo) {
         TODO("not implemented") //Currently itemClicked is not implemented or needed
     }
 
-    override fun initReady(creature: Creature) {
+    override fun initReady(creature: CombatantDbo) {
         creature.apply { isReadied = !isReadied }
         view.adapter.notifyDataSetChanged()
     }
 
-    override fun initRemove(creature: Creature) {
-        val index = view.adapter.getPosition(creature)
-        view.adapter.removeItem(creature)
+    override fun initRemove(combatant: CombatantDbo) {
+        val index = view.adapter.getPosition(combatant)
+        view.adapter.removeItem(combatant)
 
         //Adjust if this changes the index of the selected item
         if(index < view.adapter.currentSelected) {
@@ -99,6 +113,6 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         }
 
         //Add back on list of creatures that can be added
-        charactersNotOnList.add(creature)
+        combatant.canAddToList = true
     }
 }

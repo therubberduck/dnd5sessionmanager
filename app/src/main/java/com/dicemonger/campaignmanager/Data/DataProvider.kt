@@ -46,6 +46,10 @@ class DataProvider() {
         _db.Characters.get(id, callback)
     }
 
+    fun getCreatures(callback: (List<Creature>) -> Unit) {
+        _db.Creatures.getAll(callback)
+    }
+
     fun getMonsters(callback: (List<Creature>) -> Unit) {
         _db.Monsters.getAll(callback)
     }
