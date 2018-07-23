@@ -47,6 +47,10 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     }
 
     fun nextInitiative() {
+        if(view.adapter.itemCount == 0) {
+            return
+        }
+
         var currentSelected = view.adapter.currentSelected + 1
 
         if(currentSelected >= view.adapter.itemCount) {
@@ -85,7 +89,7 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
 
         //Remove from list of creatures that can be added
         if(!pickerObject.isMonster) {
-            pickerObject.canAddToList = true
+            pickerObject.canAddToList = false
         }
 
     }

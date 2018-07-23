@@ -27,12 +27,18 @@ class InitPickerAdapter(items: List<CombatantDbo>, private val listener: ObjectL
             holder.frmCell.setOnClickListener { listener.itemClicked(item) }
         }
         else {
-            holder.frmCell.visibility = View.GONE
+            holder.hide()
         }
     }
 
     class ViewHolder(cell: View) : RecyclerView.ViewHolder(cell) {
+        val view = cell
         val frmCell = cell.findViewById<ViewGroup>(R.id.frmCell)
         val txtScreenName = cell.findViewById<TextView>(R.id.txtName)
+
+        fun hide() {
+            view.visibility = View.GONE
+            view.layoutParams = RecyclerView.LayoutParams(0,0)
+        }
     }
 }
