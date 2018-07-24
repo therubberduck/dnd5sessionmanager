@@ -4,7 +4,9 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import com.dicemonger.campaignmanager.Data.DataProvider
+import com.dicemonger.campaignmanager.Frontend.Screens.DeletionDialog
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
+import com.dicemonger.campaignmanager.Frontend.Screens.getString
 import com.dicemonger.campaignmanager.Model.Character
 import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
@@ -48,22 +50,13 @@ class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Cha
 
     //Delete character
     override fun itemLongClicked(item: Character) {
-        val builder = AlertDialog.Builder(activity)
-        builder.setMessage(activity.getString(R.string.dialog_deletecharacter_body, item.name))
-                .setTitle(R.string.dialog_deletecharacter_title)
-                .setPositiveButton(R.string.global_delete, object : DialogInterface.OnClickListener{
-                    override fun onClick(dialog: DialogInterface?, id: Int) {
-                        deleteCharacter(item)
-                    }
-                })
-                .setNegativeButton(R.string.global_cancel, object : DialogInterface.OnClickListener{
-                    override fun onClick(dialog: DialogInterface?, id: Int) {
-                        dialog?.dismiss()
-                    }
-                })
-
-        dialog = builder.create()
-        dialog?.show()
+        dialog = DeletionDialog.show(
+                getString(R.string.dialog_deletecharacter_title),
+                getString(R.string.dialog_deletecharacter_body, item.name),
+                activity)
+        {
+            deleteCharacter(item)
+        }
     }
 
     fun deleteCharacter(character: Character) {
