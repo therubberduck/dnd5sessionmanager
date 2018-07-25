@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.*
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapter
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
-import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
 interface InitiativeListListener : ObjectListAdapterListener<CombatantDbo> {
@@ -38,8 +37,7 @@ class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: Ini
         val isActive = position == 0
         holder.vwIsActive.isActive = isActive
 
-        val text = item.name + " (" + item.currentInit + ")"
-        holder.txtScreenName.setText(text)
+        holder.txtScreenName.setText(item.nameWithInit)
 
         if(item.isReadied) {
             holder.vwIsActive.isReady = true

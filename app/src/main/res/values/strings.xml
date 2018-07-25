@@ -27,6 +27,7 @@
 
     <string name="dialog_name">Name</string>
     <string name="dialog_initiative_short">Init</string>
+    <string name="dialog_number">Number</string>
 
     <string name="dialog_deletecharacter_title">Delete Character</string>
     <string name="dialog_deletecharacter_body">Do you wish to delete %1$s?</string>

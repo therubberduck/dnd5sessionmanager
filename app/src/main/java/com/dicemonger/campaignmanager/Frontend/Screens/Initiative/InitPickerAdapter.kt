@@ -1,15 +1,19 @@
 package com.dicemonger.campaignmanager.Frontend.Screens.Initiative
 
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapter
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
-import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
-class InitPickerAdapter(items: List<CombatantDbo>, private val listener: ObjectListAdapterListener<CombatantDbo>, listview: RecyclerView) :
+interface InitPickerAdapterListener : ObjectListAdapterListener<CombatantDbo>{
+    fun groupAdded(combatant: CombatantDbo)
+}
+
+class InitPickerAdapter(items: List<CombatantDbo>, private val listener: InitPickerAdapterListener, listview: RecyclerView) :
         ObjectListAdapter<CombatantDbo, InitPickerAdapter.ViewHolder>(items, listener.getContext(), listview) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): InitPickerAdapter.ViewHolder {
@@ -21,10 +25,16 @@ class InitPickerAdapter(items: List<CombatantDbo>, private val listener: ObjectL
         val item = getItem(position)
 
         if(item.canAddToList) {
-            val text = item.name + " (" + item.prefixInitBonus + ")"
-            holder.txtScreenName.setText(text)
+            holder.txtScreenName.setText(item.nameWithInitBonus)
 
             holder.frmCell.setOnClickListener { listener.itemClicked(item) }
+
+            if(item.isMonster) {
+                holder.btnGroup.setOnClickListener { listener.groupAdded(item) }
+            }
+            else {
+                holder.btnGroup.visibility = View.INVISIBLE
+            }
         }
         else {
             holder.hide()
@@ -35,6 +45,7 @@ class InitPickerAdapter(items: List<CombatantDbo>, private val listener: ObjectL
         val view = cell
         val frmCell = cell.findViewById<ViewGroup>(R.id.frmCell)
         val txtScreenName = cell.findViewById<TextView>(R.id.txtName)
+        val btnGroup = cell.findViewById<FloatingActionButton>(R.id.fabQuantity)
 
         fun hide() {
             view.visibility = View.GONE

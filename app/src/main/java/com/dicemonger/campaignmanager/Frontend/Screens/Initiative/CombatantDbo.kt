@@ -17,10 +17,31 @@ data class CombatantDbo (val id: Long, val name: String, val initBonus: Int, val
 
     var canAddToList = true
     var isReadied = false
+    var groupNumber = 0
 
     fun rollInitiative() {
         currentInit = Random().nextInt(20) + 1 + initBonus
     }
+
+    val nameWithInitBonus : String
+        get() {
+            return name + " (" + prefixInitBonus + ")"
+        }
+
+    val nameWithInit : String
+        get() {
+            var textString: String
+
+            if(groupNumber > 1) {
+                textString = groupNumber.toString() + " " + name + "s"
+            }
+            else {
+                textString = name
+            }
+
+            textString += " (" + currentInit + ")"
+            return textString
+        }
 
     val prefixInitBonus: String
         get() {

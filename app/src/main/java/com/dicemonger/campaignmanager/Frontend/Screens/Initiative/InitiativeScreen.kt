@@ -4,7 +4,7 @@ import android.content.Context
 import com.dicemonger.campaignmanager.Data.DataProvider
 import com.wealthfront.magellan.Screen
 
-class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitPickerDialogListener {
+class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitPickerDialogListener, GroupPickerListener {
 
     val combatants = ArrayList<CombatantDbo>()
 
@@ -64,7 +64,7 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     }
 
     //
-    // Init Picker
+    // Init Picker / Group Picker
     //
 
     override fun combatantAdded(pickerObject: CombatantDbo) {
@@ -87,11 +87,33 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
             view.adapter.currentSelected += 1
         }
 
+        adjustSelectedItemIndex(listObject)
+
         //Remove from list of creatures that can be added
         if(!pickerObject.isMonster) {
             pickerObject.canAddToList = false
         }
 
+    }
+
+    override fun groupStartAdding(combatant: CombatantDbo) {
+        GroupPickerDialog(activity, combatant.copy(), this)
+    }
+
+    override fun groupAdded(combatant: CombatantDbo) {
+        combatant.rollInitiative()
+        view.adapter.addItem(combatant)
+        view.adapter.sortByInt { -it.currentInit }
+
+        adjustSelectedItemIndex(combatant)
+    }
+
+    fun adjustSelectedItemIndex(item: CombatantDbo) {
+        val index = view.adapter.getPosition(item)
+
+        if(index <= view.adapter.currentSelected) {
+            view.adapter.currentSelected += 1
+        }
     }
 
     //

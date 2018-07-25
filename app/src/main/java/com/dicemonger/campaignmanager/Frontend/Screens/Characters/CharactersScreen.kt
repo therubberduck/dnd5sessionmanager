@@ -25,8 +25,6 @@ class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Cha
             view.adapter.sortByString { it.name }
         }
 
-
-
         view.setAddButton { createNewCharacter() }
 
         return view

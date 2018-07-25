@@ -6,15 +6,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
-import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
 interface InitPickerDialogListener {
     fun combatantAdded(combatant: CombatantDbo)
+    fun groupStartAdding(combatant: CombatantDbo)
 }
 
-class InitPickerDialog(_context: Activity, private val _listener: InitPickerDialogListener, val creatures: ArrayList<CombatantDbo>) : AlertDialog(_context), ObjectListAdapterListener<CombatantDbo> {
+class InitPickerDialog(_context: Activity, private val _listener: InitPickerDialogListener, val creatures: ArrayList<CombatantDbo>) : AlertDialog(_context), InitPickerAdapterListener {
 
     val _view : View
 
@@ -59,6 +58,11 @@ class InitPickerDialog(_context: Activity, private val _listener: InitPickerDial
 
     fun addCombatant(combatant: CombatantDbo) {
         _listener.combatantAdded(combatant)
+        cancel()
+    }
+
+    override fun groupAdded(combatant: CombatantDbo) {
+        _listener.groupStartAdding(combatant)
         cancel()
     }
 }
