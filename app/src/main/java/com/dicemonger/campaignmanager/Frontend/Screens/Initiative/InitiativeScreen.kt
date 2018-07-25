@@ -132,21 +132,25 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     override fun initRemove(combatant: CombatantDbo) {
         //Remove single combatant from list
         if(combatant.groupNumber <= 1) {
-            val index = view.adapter.getPosition(combatant)
-            view.adapter.removeItem(combatant)
-
-            //Adjust if this changes the index of the selected item
-            if(index < view.adapter.currentSelected) {
-                view.adapter.currentSelected -= 1
-            }
-
-            //Add back on list of creatures that can be added
-            combatant.canAddToList = true
+            initRemoveAll(combatant)
         }
         //Decrease number of combatants
         else {
             combatant.groupNumber--
             view.adapter.notifyItemChanged(combatant)
         }
+    }
+
+    override fun initRemoveAll(combatant: CombatantDbo) {
+        val index = view.adapter.getPosition(combatant)
+        view.adapter.removeItem(combatant)
+
+        //Adjust if this changes the index of the selected item
+        if(index < view.adapter.currentSelected) {
+            view.adapter.currentSelected -= 1
+        }
+
+        //Add back on list of creatures that can be added
+        combatant.canAddToList = true
     }
 }

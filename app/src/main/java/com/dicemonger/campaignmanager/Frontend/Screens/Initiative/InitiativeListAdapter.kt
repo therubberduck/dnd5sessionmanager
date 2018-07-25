@@ -11,6 +11,7 @@ import com.dicemonger.campaignmanager.R
 interface InitiativeListListener : ObjectListAdapterListener<CombatantDbo> {
     fun initReady(combatant: CombatantDbo)
     fun initRemove(combatant: CombatantDbo)
+    fun initRemoveAll(combatant: CombatantDbo)
 }
 
 class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: InitiativeListListener, listview: RecyclerView) :
@@ -44,6 +45,7 @@ class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: Ini
 
         holder.btnReady.setOnClickListener { listener.initReady(item) }
         holder.btnRemove.setOnClickListener { listener.initRemove(item) }
+        holder.btnRemove.setOnLongClickListener { listener.initRemoveAll(item); true }
     }
 
     fun notifyItemChanged(item: CombatantDbo) {
