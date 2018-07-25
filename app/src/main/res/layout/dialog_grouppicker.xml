@@ -10,10 +10,16 @@
         android:layout_width="match_parent" android:layout_height="wrap_content">
         <EditText
             android:id="@+id/edtNumber"
-            android:layout_width="0dp" android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="70dp" android:layout_height="wrap_content"
             android:inputType="numberSigned"
             android:hint="@string/dialog_number"/>
+        <EditText
+            android:id="@+id/edtTag"
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:hint="@string/dialog_tag"
+        />
         <Button
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -25,6 +31,13 @@
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:columnCount="5">
+        <Button
+            android:id="@+id/btnNumber1"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="1"/>
         <Button
             android:id="@+id/btnNumber2"
             android:layout_width="48dp" android:layout_height="48dp"
@@ -88,12 +101,5 @@
             android:padding="4dp"
             android:background="@drawable/bg_accent_circle"
             android:text="16"/>
-        <Button
-            android:id="@+id/btnNumber20"
-            android:layout_width="48dp" android:layout_height="48dp"
-            android:layout_margin="4dp"
-            android:padding="4dp"
-            android:background="@drawable/bg_accent_circle"
-            android:text="20"/>
     </GridLayout>
 </LinearLayout>

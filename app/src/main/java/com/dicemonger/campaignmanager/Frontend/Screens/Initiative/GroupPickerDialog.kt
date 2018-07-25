@@ -17,6 +17,7 @@ class GroupPickerDialog(_context: Activity, val _item: CombatantDbo, val _listen
     val _view : View
 
     val _edtNumber : EditText
+    val _edtTag : EditText
     val _btnAdd : Button
 
     val _grdNumbers : GridLayout
@@ -29,8 +30,8 @@ class GroupPickerDialog(_context: Activity, val _item: CombatantDbo, val _listen
         setCancelable(true)
 
         _edtNumber = _view.findViewById(R.id.edtNumber)
+        _edtTag = _view.findViewById(R.id.edtTag)
         _btnAdd = _view.findViewById(R.id.btnAdd)
-
         _grdNumbers = _view.findViewById(R.id.grdNumbers)
 
         _btnAdd.setOnClickListener {addGroup() }
@@ -45,21 +46,27 @@ class GroupPickerDialog(_context: Activity, val _item: CombatantDbo, val _listen
         show()
     }
 
-    private fun clickedNumberButton(button: Button) {
-        val text = button.text
-        _item.groupNumber = text.toString().toInt()
-        _listener.groupAdded(_item)
-        cancel()
-
-    }
-
     fun addGroup() {
         val number = _edtNumber.text
+        val tag = _edtTag.text
 
         if(!number.isBlank()){
+            _item.tag = tag.toString()
             _item.groupNumber = number.toString().toInt()
             _listener.groupAdded(_item)
             cancel()
         }
+    }
+
+    private fun clickedNumberButton(button: Button) {
+        val text = button.text
+        val tag = _edtTag.text
+
+        _item.tag = tag.toString()
+
+        _item.groupNumber = text.toString().toInt()
+        _listener.groupAdded(_item)
+        cancel()
+
     }
 }

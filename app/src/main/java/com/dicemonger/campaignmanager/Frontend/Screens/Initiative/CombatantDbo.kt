@@ -18,6 +18,7 @@ data class CombatantDbo (val id: Long, val name: String, val initBonus: Int, val
     var canAddToList = true
     var isReadied = false
     var groupNumber = 0
+    var tag: String = ""
 
     fun rollInitiative() {
         currentInit = Random().nextInt(20) + 1 + initBonus
@@ -39,7 +40,12 @@ data class CombatantDbo (val id: Long, val name: String, val initBonus: Int, val
                 textString = name
             }
 
+            if(!tag.isBlank()) {
+                textString += " (" + tag + ")"
+            }
+
             textString += " (" + currentInit + ")"
+
             return textString
         }
 
