@@ -20,4 +20,80 @@
             android:backgroundTint="@color/accent"
             android:text="@string/global_add"/>
     </LinearLayout>
+    <GridLayout
+        android:id="@+id/grdNumbers"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:columnCount="5">
+        <Button
+            android:id="@+id/btnNumber2"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="2"/>
+        <Button
+            android:id="@+id/btnNumber3"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="3"/>
+        <Button
+            android:id="@+id/btnNumber4"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="4"/>
+        <Button
+            android:id="@+id/btnNumber5"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="5"/>
+        <Button
+            android:id="@+id/btnNumber6"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="6"/>
+        <Button
+            android:id="@+id/btnNumber8"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="8"/>
+        <Button
+            android:id="@+id/btnNumber10"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="10"/>
+        <Button
+            android:id="@+id/btnNumber12"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="12"/>
+        <Button
+            android:id="@+id/btnNumber16"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="16"/>
+        <Button
+            android:id="@+id/btnNumber20"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:background="@drawable/bg_accent_circle"
+            android:text="20"/>
+    </GridLayout>
 </LinearLayout>
