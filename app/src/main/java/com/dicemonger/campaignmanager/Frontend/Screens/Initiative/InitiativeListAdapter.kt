@@ -28,11 +28,7 @@ class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: Ini
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var adjustedPosition = position + currentSelected
-        if(adjustedPosition >= itemCount) {
-            adjustedPosition = adjustedPosition - itemCount
-        }
-        val item = getItem(adjustedPosition)
+        val item = getItem(adjustPosition(position))
 
         val isActive = position == 0
         holder.vwIsActive.isActive = isActive
@@ -48,6 +44,28 @@ class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: Ini
 
         holder.btnReady.setOnClickListener { listener.initReady(item) }
         holder.btnRemove.setOnClickListener { listener.initRemove(item) }
+    }
+
+    fun notifyItemChanged(item: CombatantDbo) {
+        val index = getPosition(item)
+        val adjustedIndex = oppositeAdjustPosition(index)
+        notifyItemChanged(adjustedIndex)
+    }
+
+    fun adjustPosition(arrayPosition: Int) : Int {
+        var listPosition = arrayPosition + currentSelected
+        if(listPosition >= itemCount) {
+            listPosition = listPosition - itemCount
+        }
+        return listPosition
+    }
+
+    fun oppositeAdjustPosition(listPosition: Int) : Int {
+        var arrayPosition = listPosition - currentSelected
+        if(arrayPosition < 0) {
+            arrayPosition = arrayPosition + itemCount
+        }
+        return arrayPosition
     }
 
     class ViewHolder(cell: View) : RecyclerView.ViewHolder(cell) {
