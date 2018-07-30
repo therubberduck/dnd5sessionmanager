@@ -54,6 +54,11 @@ class DataProvider() {
         _db.Monsters.getAll(callback)
     }
 
+    fun getMonster(id: Long, callback: (Monster) -> Unit) {
+        _db.Monsters.get(id, callback)
+
+    }
+
     fun update(character: Character) {
         _db.Characters.update(character)
     }

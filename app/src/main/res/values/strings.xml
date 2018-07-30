@@ -23,6 +23,7 @@
     <string name="dialog_createcharacter">Create Character</string>
     <string name="dialog_createmonster">Create Monster</string>
     <string name="dialog_editcharacter">Edit Character</string>
+    <string name="dialog_editmonster">Edit Monster</string>
     <string name="dialog_addcombatant">Add Combatant</string>
 
     <string name="dialog_name">Name</string>

@@ -31,7 +31,7 @@ class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Monster
     }
 
     fun createNewMonster() {
-        NewMonsterDialog(activity, this)
+        NewMonsterDialog(activity, null, this)
     }
 
     //
@@ -43,7 +43,7 @@ class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Monster
     }
 
     override fun itemClicked(item: Monster) {
-        TODO("Edit Monster")
+        NewMonsterDialog(activity, item.id, this)
     }
 
     //Delete character
@@ -68,6 +68,11 @@ class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Monster
 
     override fun monsterAdded(monster: Monster) {
         view.adapter.addItem(monster)
+        view.adapter.sortByString { it.name }
+    }
+
+    override fun monsterEdited(monster: Monster) {
+        view.adapter.replaceItem(monster){it.id == monster.id}
         view.adapter.sortByString { it.name }
     }
 }

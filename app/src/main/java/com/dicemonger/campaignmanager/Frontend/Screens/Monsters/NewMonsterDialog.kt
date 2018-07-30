@@ -12,9 +12,10 @@ import com.dicemonger.campaignmanager.R
 
 interface NewMonsterDialogListener {
     fun monsterAdded(monster: Monster)
+    fun monsterEdited(monster: Monster)
 }
 
-class NewMonsterDialog (_context: Activity, private val _listener: NewMonsterDialogListener) : AlertDialog(_context) {
+class NewMonsterDialog (_context: Activity, private val _monsterId: Long?, private val _listener: NewMonsterDialogListener) : AlertDialog(_context) {
 
     val _view : View
 
@@ -23,6 +24,8 @@ class NewMonsterDialog (_context: Activity, private val _listener: NewMonsterDia
     val _btnAdd : Button
 
     val _data = DataProvider.get()
+
+    private val _isNewMonster = _monsterId == null
 
     init {
         _view = _context.layoutInflater.inflate(R.layout.dialog_newmonster, null)
@@ -34,11 +37,31 @@ class NewMonsterDialog (_context: Activity, private val _listener: NewMonsterDia
         _edtInit = _view.findViewById(R.id.edtInit)
         _btnAdd = _view.findViewById(R.id.btnAdd)
 
-        setTitle(_context.getString(R.string.dialog_createmonster))
+        if(_isNewMonster) {
+            setTitle(_context.getString(R.string.dialog_createmonster))
+        }
+        else {
+            setTitle(_context.getString(R.string.dialog_editmonster))
+            _btnAdd.setText(R.string.global_edit)
+            _data.getMonster(_monsterId!!) {
+                monster ->
+                _edtName.setText(monster.name)
+                _edtInit.setText(monster.initBonus.toString())
+            }
+        }
 
-        _btnAdd.setOnClickListener {createMonster() }
+        _btnAdd.setOnClickListener {submitMonster() }
 
         show()
+    }
+
+    fun submitMonster() {
+        if(_isNewMonster) {
+            createMonster()
+        }
+        else {
+            editMonster()
+        }
     }
 
     fun createMonster() {
@@ -51,6 +74,18 @@ class NewMonsterDialog (_context: Activity, private val _listener: NewMonsterDia
                 newMonster ->
                 _listener.monsterAdded(newMonster)
             }
+            cancel()
+        }
+    }
+
+    fun editMonster() {
+        val name = _edtName.text
+        val init = _edtInit.text
+
+        if(!name.isBlank() && !init.isBlank()){
+            val monster = Monster(_monsterId!!, name.toString(), init.toString().toInt())
+            _data.update(monster)
+            _listener.monsterEdited(monster)
             cancel()
         }
     }
