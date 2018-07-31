@@ -15,7 +15,7 @@ class TextDialog private constructor () {
             }
 
             builder.setMessage(body)
-            
+
             builder.setPositiveButton(R.string.global_ok, object : DialogInterface.OnClickListener{
                     override fun onClick(dialog: DialogInterface?, id: Int) {
                         callback()

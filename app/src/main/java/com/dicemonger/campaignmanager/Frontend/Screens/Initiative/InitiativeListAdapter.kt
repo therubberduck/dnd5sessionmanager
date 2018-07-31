@@ -8,6 +8,7 @@ import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapter
 import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.R
 import com.dicemonger.campaignmanager.Utility.dp
+import com.dicemonger.campaignmanager.Utility.moveWithInBounds
 import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
 import org.apmem.tools.layouts.FlowLayout
 
@@ -85,6 +86,10 @@ class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: Ini
         if(listPosition >= itemCount) {
             listPosition = listPosition - itemCount
         }
+
+        //Avoid crash in case of error
+        listPosition = listPosition.moveWithInBounds(0, itemCount)
+
         return listPosition
     }
 

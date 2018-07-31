@@ -89,7 +89,7 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         val index = view.adapter.getPosition(listObject)
 
         //Adjust if this changes the index of the selected item
-        if(index <= view.adapter.currentSelected) {
+        if(index <= view.adapter.currentSelected && view.adapter.currentSelected + 1 < view.adapter.itemCount) {
             view.adapter.currentSelected += 1
         }
 
@@ -175,7 +175,7 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         view.adapter.removeItem(combatant)
 
         //Adjust if this changes the index of the selected item
-        if(index < view.adapter.currentSelected) {
+        if(index < view.adapter.currentSelected && index != 0) {
             view.adapter.currentSelected -= 1
         }
 
