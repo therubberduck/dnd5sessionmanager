@@ -3,7 +3,7 @@ package com.dicemonger.campaignmanager.Frontend.Screens.Main
 import android.content.Context
 import android.view.View
 import com.dicemonger.campaignmanager.Frontend.MainActivity
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Model.ScreenItem
 import com.wealthfront.magellan.Screen
 

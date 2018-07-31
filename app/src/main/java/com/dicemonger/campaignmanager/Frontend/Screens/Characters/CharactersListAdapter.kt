@@ -5,11 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.InitiativeListAdapter
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapter
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapter
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Model.Character
-import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 
 class CharactersListAdapter(items: List<Character>, private val listener: ObjectListAdapterListener<Character>, listitem: RecyclerView) :

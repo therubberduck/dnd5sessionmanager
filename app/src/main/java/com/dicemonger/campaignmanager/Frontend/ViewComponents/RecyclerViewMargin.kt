@@ -1,4 +1,4 @@
-package com.dicemonger.campaignmanager.Frontend.Screens
+package com.dicemonger.campaignmanager.Frontend.ViewComponents
 
 import android.content.res.Resources
 import android.graphics.Rect

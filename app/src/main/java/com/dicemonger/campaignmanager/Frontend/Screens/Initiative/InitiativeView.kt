@@ -2,10 +2,9 @@ package com.dicemonger.campaignmanager.Frontend.Screens.Initiative
 
 import android.content.Context
 import android.support.design.widget.FloatingActionButton
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.dicemonger.campaignmanager.Frontend.Screens.RecyclerViewMargin
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.RecyclerViewMargin
 import com.dicemonger.campaignmanager.R
 import com.wealthfront.magellan.BaseScreenView
 

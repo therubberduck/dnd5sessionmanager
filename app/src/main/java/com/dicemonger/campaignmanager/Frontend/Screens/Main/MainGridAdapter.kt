@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapter
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapter
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Model.ScreenItem
 import com.dicemonger.campaignmanager.R
 

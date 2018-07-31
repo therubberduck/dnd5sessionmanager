@@ -5,12 +5,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapter
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapter
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.R
 import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
 
-interface InitPickerAdapterListener : ObjectListAdapterListener<CombatantDbo>{
+interface InitPickerAdapterListener : ObjectListAdapterListener<CombatantDbo> {
     fun groupAdded(combatant: CombatantDbo)
 }
 

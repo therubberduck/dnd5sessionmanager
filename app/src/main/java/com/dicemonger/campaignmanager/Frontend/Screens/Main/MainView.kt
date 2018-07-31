@@ -4,9 +4,8 @@ import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.GridView
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
-import com.dicemonger.campaignmanager.Frontend.Screens.RecyclerViewMargin
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapterListener
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.RecyclerViewMargin
 import com.dicemonger.campaignmanager.Model.ScreenItem
 import com.dicemonger.campaignmanager.R
 import com.wealthfront.magellan.BaseScreenView

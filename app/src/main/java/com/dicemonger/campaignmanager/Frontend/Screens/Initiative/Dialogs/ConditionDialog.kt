@@ -26,7 +26,7 @@ class ConditionDialog(_context: Activity, val _item: CombatantDbo, val listener:
         _view = _context.layoutInflater.inflate(R.layout.dialog_condition, null)
         setView(_view)
 
-        setTitle(_item.name + "s")
+        setTitle(_item.name + "'s Conditions")
         setCancelable(true)
 
         _edtConditions = _view.findViewById(R.id.edtCondition)

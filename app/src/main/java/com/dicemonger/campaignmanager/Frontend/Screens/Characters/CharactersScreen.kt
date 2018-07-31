@@ -2,14 +2,12 @@ package com.dicemonger.campaignmanager.Frontend.Screens.Characters
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.view.View
 import com.dicemonger.campaignmanager.Data.DataProvider
-import com.dicemonger.campaignmanager.Frontend.Screens.DeletionDialog
-import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
-import com.dicemonger.campaignmanager.Frontend.Screens.getString
+import com.dicemonger.campaignmanager.Frontend.Dialogs.DeletionDialog
+import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapterListener
+import com.dicemonger.campaignmanager.Utility.getString
 import com.dicemonger.campaignmanager.Model.Character
-import com.dicemonger.campaignmanager.Model.Creature
 import com.dicemonger.campaignmanager.R
 import com.wealthfront.magellan.Screen
 

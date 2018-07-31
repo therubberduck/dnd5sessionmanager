@@ -1,11 +1,9 @@
-package com.dicemonger.campaignmanager.Frontend.Screens
+package com.dicemonger.campaignmanager.Frontend.ViewComponents
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.AbsListView
-import com.dicemonger.campaignmanager.Model.Creature
 
 /**
  * Created by redwebpraktik on 12/09/2017.

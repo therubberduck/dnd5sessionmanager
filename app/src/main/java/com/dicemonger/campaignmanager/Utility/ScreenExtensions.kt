@@ -1,4 +1,4 @@
-package com.dicemonger.campaignmanager.Frontend.Screens
+package com.dicemonger.campaignmanager.Utility
 
 import com.wealthfront.magellan.Screen
 
