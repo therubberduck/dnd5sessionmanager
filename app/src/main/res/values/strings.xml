@@ -26,8 +26,9 @@
     <string name="dialog_editmonster">Edit Monster</string>
     <string name="dialog_addcombatant">Add Combatant</string>
 
-    <string name="dialog_name">Name</string>
+    <string name="dialog_condition">Condition</string>
     <string name="dialog_initiative_short">Init</string>
+    <string name="dialog_name">Name</string>
     <string name="dialog_number">Number</string>
     <string name="dialog_tag">Tag</string>
 

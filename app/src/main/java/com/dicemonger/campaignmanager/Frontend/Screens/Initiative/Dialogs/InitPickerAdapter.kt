@@ -1,4 +1,4 @@
-package com.dicemonger.campaignmanager.Frontend.Screens.Initiative
+package com.dicemonger.campaignmanager.Frontend.Screens.Initiative.Dialogs
 
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.RecyclerView
@@ -17,9 +17,9 @@ interface InitPickerAdapterListener : ObjectListAdapterListener<CombatantDbo>{
 class InitPickerAdapter(items: List<CombatantDbo>, private val listener: InitPickerAdapterListener, listview: RecyclerView) :
         ObjectListAdapter<CombatantDbo, InitPickerAdapter.ViewHolder>(items, listener.getContext(), listview) {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): InitPickerAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val cell = _inflater.inflate(R.layout.cell_initpicker, null)
-        return InitPickerAdapter.ViewHolder(cell)
+        return ViewHolder(cell)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

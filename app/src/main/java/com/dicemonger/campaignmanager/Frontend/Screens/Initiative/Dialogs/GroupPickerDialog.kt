@@ -1,4 +1,4 @@
-package com.dicemonger.campaignmanager.Frontend.Screens.Initiative
+package com.dicemonger.campaignmanager.Frontend.Screens.Initiative.Dialogs
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.GridLayout
 import com.dicemonger.campaignmanager.R
+import com.dicemonger.campaignmanager.Utility.children
 import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
 
 interface GroupPickerListener{
@@ -37,11 +38,8 @@ class GroupPickerDialog(_context: Activity, val _item: CombatantDbo, val _listen
 
         _btnAdd.setOnClickListener {addGroup() }
 
-        var i = 0
-        repeat(_grdNumbers.childCount) {
-            val btn = _grdNumbers.getChildAt(i) as Button
-            btn.setOnClickListener { clickedNumberButton(btn) }
-            i++
+        _grdNumbers.children<Button> {
+            btn -> btn.setOnClickListener { clickedNumberButton(btn) }
         }
 
         show()

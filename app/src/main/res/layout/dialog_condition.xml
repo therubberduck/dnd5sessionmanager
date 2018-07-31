@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="360dp"
+    android:padding="4dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edtCondition"
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:hint="@string/dialog_condition"
+        />
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:backgroundTint="@color/accent"
+            android:text="@string/global_add"/>
+    </LinearLayout>
+    <org.apmem.tools.layouts.FlowLayout
+        android:id="@+id/flwConditions"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Blinded"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Deafened"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Fatigued"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Grappled"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Invisible"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Paralyzed"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Petrified"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Poisoned"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Prone"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Restrained"/>
+        <Button
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:layout_margin="4dp" android:padding="8dp"
+            android:background="@drawable/bg_accent_border_rounded"
+            android:text="Stunned"/>
+    </org.apmem.tools.layouts.FlowLayout>
+</LinearLayout>

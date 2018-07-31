@@ -1,4 +1,4 @@
-package com.dicemonger.campaignmanager.Frontend.Screens.Initiative
+package com.dicemonger.campaignmanager.Frontend.Screens.Initiative.Dialogs
 
 import android.app.Activity
 import android.app.AlertDialog

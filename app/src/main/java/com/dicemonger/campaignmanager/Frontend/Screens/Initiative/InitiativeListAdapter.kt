@@ -63,6 +63,8 @@ class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: Ini
                 btnCondition.setPadding(8.dp(),8.dp(),8.dp(),8.dp())
 
                 holder.flwConditions.addView(btnCondition)
+
+                btnCondition.setOnClickListener { holder.flwConditions.removeView(btnCondition) }
             }
         }
 

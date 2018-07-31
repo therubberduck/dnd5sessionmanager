@@ -4,12 +4,13 @@ import android.content.Context
 import android.view.View
 import android.widget.PopupMenu
 import com.dicemonger.campaignmanager.Data.DataProvider
+import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.Dialogs.*
 import com.dicemonger.campaignmanager.R
 import com.dicemonger.campaignmanager.Utility.showMenuWithIcons
 import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
 import com.wealthfront.magellan.Screen
 
-class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitPickerDialogListener, GroupPickerListener {
+class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitPickerDialogListener, GroupPickerListener, ConditionDialogListener {
 
     val combatants = ArrayList<CombatantDbo>()
 
@@ -125,9 +126,13 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     // Conditions
     //
 
-    fun addCondition(item: CombatantDbo) {
-        item.conditions.add("Blinded")
-        view.adapter.notifyItemChanged(item)
+    fun addCondition(combatant: CombatantDbo) {
+        ConditionDialog(activity, combatant, this)
+    }
+
+    override fun conditionAdded(combatant: CombatantDbo) {
+        combatant.conditions.sort()
+        view.adapter.notifyItemChanged(combatant)
     }
 
     //
