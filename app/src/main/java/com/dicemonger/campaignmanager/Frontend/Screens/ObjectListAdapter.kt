@@ -3,6 +3,7 @@ package com.dicemonger.campaignmanager.Frontend.Screens
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.AbsListView
 import com.dicemonger.campaignmanager.Model.Creature
 
@@ -12,11 +13,11 @@ import com.dicemonger.campaignmanager.Model.Creature
 
 interface ObjectListAdapterListener<T> {
     fun getContext() : Context
-    fun itemClicked(item: T) {}
-    fun itemLongClicked(item: T) {}
+    fun itemClicked(item: T, view: View) {}
+    fun itemLongClicked(item: T, view: View) {}
 }
 
-abstract class ObjectListAdapter<T, U: RecyclerView.ViewHolder>(items: List<T> = ArrayList<T>(), _context: Context, protected val _recyclerView: RecyclerView? = null)
+abstract class ObjectListAdapter<T, U: RecyclerView.ViewHolder>(items: List<T> = ArrayList<T>(), protected val _context: Context, protected val _recyclerView: RecyclerView? = null)
     : RecyclerView.Adapter<U>() {
 
     protected val _inflater: LayoutInflater

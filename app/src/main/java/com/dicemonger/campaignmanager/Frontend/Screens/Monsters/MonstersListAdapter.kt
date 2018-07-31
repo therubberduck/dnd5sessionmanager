@@ -21,8 +21,8 @@ class MonstersListAdapter(items: List<Monster>, private val listener: ObjectList
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
 
-        holder.rltCell.setOnClickListener { listener.itemClicked(item) }
-        holder.rltCell.setOnLongClickListener { listener.itemLongClicked(item);  true }
+        holder.rltCell.setOnClickListener { listener.itemClicked(item, it) }
+        holder.rltCell.setOnLongClickListener { listener.itemLongClicked(item, it);  true }
 
         val text = item.name + " (" + item.prefixInitBonus + ")"
         holder.txtName.setText(text)

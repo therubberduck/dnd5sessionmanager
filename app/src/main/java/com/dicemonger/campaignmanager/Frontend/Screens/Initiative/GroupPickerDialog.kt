@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.GridLayout
 import com.dicemonger.campaignmanager.R
+import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
 
 interface GroupPickerListener{
     fun groupAdded(combatant: CombatantDbo)

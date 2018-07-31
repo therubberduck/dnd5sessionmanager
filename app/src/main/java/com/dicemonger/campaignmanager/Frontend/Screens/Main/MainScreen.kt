@@ -1,6 +1,7 @@
 package com.dicemonger.campaignmanager.Frontend.Screens.Main
 
 import android.content.Context
+import android.view.View
 import com.dicemonger.campaignmanager.Frontend.MainActivity
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.Model.ScreenItem
@@ -21,7 +22,7 @@ class MainScreen : Screen<MainView>(), ObjectListAdapterListener<ScreenItem> {
         return activity
     }
 
-    override fun itemClicked(item: ScreenItem) {
+    override fun itemClicked(item: ScreenItem, view: View) {
         val screen = item.getScreenObject()
         (activity as MainActivity).navigateTo(screen)
     }

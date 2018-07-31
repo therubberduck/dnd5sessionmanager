@@ -23,8 +23,8 @@ class CharactersListAdapter(items: List<Character>, private val listener: Object
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
 
-        holder.rltCell.setOnClickListener { listener.itemClicked(item) }
-        holder.rltCell.setOnLongClickListener { listener.itemLongClicked(item);  true }
+        holder.rltCell.setOnClickListener { listener.itemClicked(item, holder.rltCell) }
+        holder.rltCell.setOnLongClickListener { listener.itemLongClicked(item, holder.rltCell);  true }
 
         val text = item.name + " (" + item.prefixInitBonus + ")"
         holder.txtName.setText(text)

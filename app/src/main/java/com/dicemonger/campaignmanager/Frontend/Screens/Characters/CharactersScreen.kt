@@ -3,6 +3,7 @@ package com.dicemonger.campaignmanager.Frontend.Screens.Characters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.view.View
 import com.dicemonger.campaignmanager.Data.DataProvider
 import com.dicemonger.campaignmanager.Frontend.Screens.DeletionDialog
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
@@ -42,12 +43,12 @@ class CharactersScreen : Screen<CharactersView>(), ObjectListAdapterListener<Cha
         return activity
     }
 
-    override fun itemClicked(item: Character) {
+    override fun itemClicked(item: Character, view: View) {
         EditCharacterDialog(activity, item.id, this)
     }
 
     //Delete character
-    override fun itemLongClicked(item: Character) {
+    override fun itemLongClicked(item: Character, view: View) {
         dialog = DeletionDialog.show(
                 getString(R.string.dialog_deletecharacter_title),
                 getString(R.string.dialog_deletecharacter_body, item.name),

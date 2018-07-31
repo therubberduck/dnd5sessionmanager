@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rltCell"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -11,27 +12,49 @@
     <TextView
         android:id="@+id/txtName"
         android:layout_alignParentStart="true" android:layout_toLeftOf="@id/lnrActive"
-        android:layout_centerVertical="true"
+        android:layout_alignTop="@id/lnrActive" android:layout_alignBottom="@id/lnrActive"
         android:layout_width="0dp" android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
+        android:gravity="center_vertical"
         android:textSize="20sp"
         android:textColor="@color/text"
         tools:text="A Big Hobgoblin (21)"/>
     <com.dicemonger.campaignmanager.Frontend.Screens.Initiative.InitStateLinearLayout
         android:id="@+id/lnrActive"
         android:orientation="horizontal"
-        android:layout_width="wrap_content" android:layout_height="match_parent"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:background="@drawable/bg_accent_rounded_activated">
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabReady"
-            android:layout_width="48dp" android:layout_height="48dp"
-            android:layout_margin="4dp"
-            android:src="@drawable/ic_hourglass"/>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabRemove"
             android:layout_width="48dp" android:layout_height="48dp"
             android:layout_margin="4dp"
             android:src="@drawable/ic_skull"/>
     </com.dicemonger.campaignmanager.Frontend.Screens.Initiative.InitStateLinearLayout>
+    <org.apmem.tools.layouts.FlowLayout
+        android:id="@+id/flwConditions"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_below="@+id/lnrActive" android:layout_alignParentBottom="true"
+        android:paddingLeft="8dp" android:paddingRight="8dp"
+        android:orientation="horizontal"
+        android:gravity="top|start">
+        <!--<Button-->
+            <!--android:layout_width="wrap_content" android:layout_height="36dp"-->
+            <!--android:layout_margin="4dp" android:padding="8dp"-->
+            <!--android:background="@drawable/bg_accent_border_rounded"-->
+            <!--android:text="Blinded"-->
+            <!--/>-->
+        <!--<Button-->
+            <!--android:layout_width="wrap_content" android:layout_height="36dp"-->
+            <!--android:layout_margin="4dp" android:padding="8dp"-->
+            <!--android:background="@drawable/bg_accent_border_rounded"-->
+            <!--android:text="Unconscious"-->
+        <!--/>-->
+        <!--<Button-->
+            <!--android:layout_width="wrap_content" android:layout_height="36dp"-->
+            <!--android:layout_margin="4dp" android:padding="8dp"-->
+            <!--android:background="@drawable/bg_accent_border_rounded"-->
+            <!--android:text="Long Label is Dead without the last Grape"-->
+        <!--/>-->
+    </org.apmem.tools.layouts.FlowLayout>
 </RelativeLayout>

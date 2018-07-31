@@ -7,6 +7,9 @@ import android.widget.*
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapter
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.R
+import com.dicemonger.campaignmanager.Utility.dp
+import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
+import org.apmem.tools.layouts.FlowLayout
 
 interface InitiativeListListener : ObjectListAdapterListener<CombatantDbo> {
     fun initReady(combatant: CombatantDbo)
@@ -43,7 +46,28 @@ class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: Ini
             holder.vwIsActive.isReady = false
         }
 
-        holder.btnReady.setOnClickListener { listener.initReady(item) }
+        if(item.conditions.isEmpty()) {
+            holder.flwConditions.visibility = View.GONE
+        }
+        else {
+            holder.flwConditions.visibility = View.VISIBLE
+            holder.flwConditions.removeAllViews()
+            item.conditions.forEach {
+                val btnCondition = Button(_context)
+                btnCondition.setText(it)
+                btnCondition.setBackgroundResource(R.drawable.bg_accent_border_rounded)
+                val params = FlowLayout.LayoutParams(FlowLayout.LayoutParams.WRAP_CONTENT, 36.dp())
+                params.setMargins(4.dp(),4.dp(),4.dp(),4.dp())
+                btnCondition.layoutParams = params
+
+                btnCondition.setPadding(8.dp(),8.dp(),8.dp(),8.dp())
+
+                holder.flwConditions.addView(btnCondition)
+            }
+        }
+
+        holder.rltCell.setOnClickListener { listener.itemClicked(item, it) }
+
         holder.btnRemove.setOnClickListener { listener.initRemove(item) }
         holder.btnRemove.setOnLongClickListener { listener.initRemoveAll(item); true }
     }
@@ -74,7 +98,7 @@ class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: Ini
         val rltCell = cell.findViewById<RelativeLayout>(R.id.rltCell)
         val txtScreenName = cell.findViewById<TextView>(R.id.txtName)
         val vwIsActive = cell.findViewById<InitStateLinearLayout>(R.id.lnrActive)
-        val btnReady = cell.findViewById<ImageButton>(R.id.fabReady)
         val btnRemove = cell.findViewById<ImageButton>(R.id.fabRemove)
+        val flwConditions = cell.findViewById<FlowLayout>(R.id.flwConditions)
     }
 }

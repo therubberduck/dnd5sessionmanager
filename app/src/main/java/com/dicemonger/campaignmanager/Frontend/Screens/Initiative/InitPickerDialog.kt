@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.dicemonger.campaignmanager.R
+import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
 
 interface InitPickerDialogListener {
     fun combatantAdded(combatant: CombatantDbo)
@@ -42,7 +43,7 @@ class InitPickerDialog(_context: Activity, private val _listener: InitPickerDial
         show()
     }
 
-    override fun itemClicked(item: CombatantDbo) {
+    override fun itemClicked(item: CombatantDbo, view: View) {
         addCombatant(item)
     }
 

@@ -1,7 +1,8 @@
-package com.dicemonger.campaignmanager.Frontend.Screens.Initiative
+package com.dicemonger.campaignmanager.ViewModel
 
 import com.dicemonger.campaignmanager.Model.Creature
 import java.util.*
+import kotlin.collections.ArrayList
 
 data class CombatantDbo (val id: Long, val name: String, val initBonus: Int, val isMonster: Boolean, var currentInit: Int) {
 
@@ -17,12 +18,17 @@ data class CombatantDbo (val id: Long, val name: String, val initBonus: Int, val
 
     var canAddToList = true
     var isReadied = false
+    var conditions = ArrayList<String>()
     var groupNumber = 0
     var tag: String = ""
 
     fun rollInitiative() {
         currentInit = Random().nextInt(20) + 1 + initBonus
     }
+
+    //
+    // Return Text Strings
+    //
 
     val nameWithInitBonus : String
         get() {

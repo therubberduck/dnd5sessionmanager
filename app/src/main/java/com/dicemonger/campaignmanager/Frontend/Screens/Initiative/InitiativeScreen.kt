@@ -1,7 +1,12 @@
 package com.dicemonger.campaignmanager.Frontend.Screens.Initiative
 
 import android.content.Context
+import android.view.View
+import android.widget.PopupMenu
 import com.dicemonger.campaignmanager.Data.DataProvider
+import com.dicemonger.campaignmanager.R
+import com.dicemonger.campaignmanager.Utility.showMenuWithIcons
+import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
 import com.wealthfront.magellan.Screen
 
 class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitPickerDialogListener, GroupPickerListener {
@@ -67,13 +72,13 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     // Init Picker / Group Picker
     //
 
-    override fun combatantAdded(pickerObject: CombatantDbo) {
+    override fun combatantAdded(item: CombatantDbo) {
         val listObject: CombatantDbo
-        if(pickerObject.isMonster) {
-            listObject = pickerObject.copy()
+        if(item.isMonster) {
+            listObject = item.copy()
         }
         else {
-            listObject = pickerObject
+            listObject = item
         }
 
         listObject.rollInitiative()
@@ -90,8 +95,8 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
         adjustSelectedItemIndex(listObject)
 
         //Remove from list of creatures that can be added
-        if(!pickerObject.isMonster) {
-            pickerObject.canAddToList = false
+        if(!item.isMonster) {
+            item.canAddToList = false
         }
 
     }
@@ -117,15 +122,34 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     }
 
     //
+    // Conditions
+    //
+
+    fun addCondition(item: CombatantDbo) {
+        item.conditions.add("Blinded")
+        view.adapter.notifyItemChanged(item)
+    }
+
+    //
     // Cell Handling
     //
 
-    override fun itemClicked(item: CombatantDbo) {
-        TODO("not implemented") //Currently itemClicked is not implemented or needed
+    override fun itemClicked(item: CombatantDbo, view: View) {
+        val popupMenu = PopupMenu(activity, view)
+        popupMenu.setOnMenuItemClickListener {
+            menuItem ->
+            when(menuItem.itemId){
+                R.id.mn_condition -> {addCondition(item);true}
+                R.id.mn_ready -> {initReady(item); true}
+                else -> false
+            }
+        }
+
+        popupMenu.showMenuWithIcons(R.menu.initiativeitem_action)
     }
 
-    override fun initReady(creature: CombatantDbo) {
-        creature.apply { isReadied = !isReadied }
+    override fun initReady(combatant: CombatantDbo) {
+        combatant.apply { isReadied = !isReadied }
         view.adapter.notifyDataSetChanged()
     }
 

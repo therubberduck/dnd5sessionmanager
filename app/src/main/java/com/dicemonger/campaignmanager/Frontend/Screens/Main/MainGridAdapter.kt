@@ -25,7 +25,7 @@ class MainGridAdapter(items: List<ScreenItem>, private val listener: ObjectListA
         holder.imgIcon.setImageResource(item.imageId)
         holder.txtScreenName.setText(item.screenNameId)
 
-        holder.lnrCell.setOnClickListener { listener.itemClicked(item) }
+        holder.lnrCell.setOnClickListener { listener.itemClicked(item, holder.lnrCell) }
     }
 
     class ViewHolder(val cell: View) : RecyclerView.ViewHolder(cell) {

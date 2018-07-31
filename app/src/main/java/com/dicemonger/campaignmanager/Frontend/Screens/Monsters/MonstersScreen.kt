@@ -3,6 +3,7 @@ package com.dicemonger.campaignmanager.Frontend.Screens.Monsters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.view.View
 import com.dicemonger.campaignmanager.Data.DataProvider
 import com.dicemonger.campaignmanager.Frontend.Screens.DeletionDialog
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
@@ -42,12 +43,12 @@ class MonstersScreen : Screen<MonstersView>(), ObjectListAdapterListener<Monster
         return activity
     }
 
-    override fun itemClicked(item: Monster) {
+    override fun itemClicked(item: Monster, view: View) {
         NewMonsterDialog(activity, item.id, this)
     }
 
     //Delete character
-    override fun itemLongClicked(item: Monster) {
+    override fun itemLongClicked(item: Monster, view: View) {
         dialog = DeletionDialog.show(
                 getString(R.string.dialog_deletemonster_title),
                 getString(R.string.dialog_deletemonster_body, item.name),

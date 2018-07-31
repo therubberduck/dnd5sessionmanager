@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapter
 import com.dicemonger.campaignmanager.Frontend.Screens.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.R
+import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
 
 interface InitPickerAdapterListener : ObjectListAdapterListener<CombatantDbo>{
     fun groupAdded(combatant: CombatantDbo)
@@ -27,7 +28,7 @@ class InitPickerAdapter(items: List<CombatantDbo>, private val listener: InitPic
         if(item.canAddToList) {
             holder.txtScreenName.setText(item.nameWithInitBonus)
 
-            holder.frmCell.setOnClickListener { listener.itemClicked(item) }
+            holder.frmCell.setOnClickListener { listener.itemClicked(item, it) }
 
             if(item.isMonster) {
                 holder.btnGroup.setOnClickListener { listener.groupAdded(item) }
