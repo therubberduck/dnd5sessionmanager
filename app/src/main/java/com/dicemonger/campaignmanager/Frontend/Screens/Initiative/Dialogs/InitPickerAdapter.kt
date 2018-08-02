@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapter
 import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapterListener
 import com.dicemonger.campaignmanager.R
-import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
+import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ViewModel.CombatantDbo
 
 interface InitPickerAdapterListener : ObjectListAdapterListener<CombatantDbo> {
     fun groupAdded(combatant: CombatantDbo)

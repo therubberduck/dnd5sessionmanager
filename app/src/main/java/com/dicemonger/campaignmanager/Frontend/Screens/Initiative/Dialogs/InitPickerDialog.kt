@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.dicemonger.campaignmanager.R
-import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
+import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ViewModel.CombatantDbo
 
 interface InitPickerDialogListener {
     fun combatantAdded(combatant: CombatantDbo)

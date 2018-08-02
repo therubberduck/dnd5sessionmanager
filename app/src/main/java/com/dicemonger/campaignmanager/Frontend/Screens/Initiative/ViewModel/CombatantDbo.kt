@@ -1,5 +1,6 @@
-package com.dicemonger.campaignmanager.ViewModel
+package com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ViewModel
 
+import com.dicemonger.campaignmanager.Model.Condition
 import com.dicemonger.campaignmanager.Model.Creature
 import java.util.*
 import kotlin.collections.ArrayList
@@ -18,7 +19,7 @@ data class CombatantDbo (val id: Long, val name: String, val initBonus: Int, val
 
     var canAddToList = true
     var isReadied = false
-    var conditions = ArrayList<String>()
+    var conditions = ArrayList<Condition>()
     var groupNumber = 0
     var tag: String = ""
 

@@ -7,7 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import com.dicemonger.campaignmanager.R
 import com.dicemonger.campaignmanager.Utility.children
-import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
+import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ViewModel.CombatantDbo
+import com.dicemonger.campaignmanager.Model.Condition
 import org.apmem.tools.layouts.FlowLayout
 
 interface ConditionDialogListener{
@@ -42,8 +43,9 @@ class ConditionDialog(_context: Activity, val _item: CombatantDbo, val listener:
         show()
     }
 
-    fun addCondition(condition: String) {
-        if(!condition.isEmpty()) {
+    fun addCondition(conditionName: String) {
+        if(!conditionName.isEmpty()) {
+            val condition = Condition.getCondition(conditionName)
             _item.conditions.add(condition)
         }
         listener.conditionAdded(_item)

@@ -7,7 +7,7 @@ import com.dicemonger.campaignmanager.Data.DataProvider
 import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.Dialogs.*
 import com.dicemonger.campaignmanager.R
 import com.dicemonger.campaignmanager.Utility.showMenuWithIcons
-import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
+import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ViewModel.CombatantDbo
 import com.wealthfront.magellan.Screen
 
 class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitPickerDialogListener, GroupPickerListener, ConditionDialogListener {
@@ -131,7 +131,7 @@ class InitiativeScreen : Screen<InitiativeView>(), InitiativeListListener, InitP
     }
 
     override fun conditionAdded(combatant: CombatantDbo) {
-        combatant.conditions.sort()
+        combatant.conditions.sortBy { it.name }
         view.adapter.notifyItemChanged(combatant)
     }
 

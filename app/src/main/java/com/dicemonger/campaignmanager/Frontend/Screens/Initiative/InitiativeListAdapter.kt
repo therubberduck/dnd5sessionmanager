@@ -9,7 +9,8 @@ import com.dicemonger.campaignmanager.Frontend.ViewComponents.ObjectListAdapterL
 import com.dicemonger.campaignmanager.R
 import com.dicemonger.campaignmanager.Utility.dp
 import com.dicemonger.campaignmanager.Utility.moveWithInBounds
-import com.dicemonger.campaignmanager.ViewModel.CombatantDbo
+import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.ViewModel.CombatantDbo
+import com.dicemonger.campaignmanager.Frontend.Screens.Initiative.Views.ConditionButton
 import org.apmem.tools.layouts.FlowLayout
 
 interface InitiativeListListener : ObjectListAdapterListener<CombatantDbo> {
@@ -54,18 +55,8 @@ class InitiativeListAdapter(items: List<CombatantDbo>, private val listener: Ini
             holder.flwConditions.visibility = View.VISIBLE
             holder.flwConditions.removeAllViews()
             item.conditions.forEach {
-                val btnCondition = Button(_context)
-                btnCondition.setText(it)
-                btnCondition.setBackgroundResource(R.drawable.bg_accent_border_rounded)
-                val params = FlowLayout.LayoutParams(FlowLayout.LayoutParams.WRAP_CONTENT, 36.dp())
-                params.setMargins(4.dp(),4.dp(),4.dp(),4.dp())
-                btnCondition.layoutParams = params
-
-                btnCondition.setPadding(8.dp(),8.dp(),8.dp(),8.dp())
-
+                val btnCondition = ConditionButton(_context, holder.flwConditions, it, item)
                 holder.flwConditions.addView(btnCondition)
-
-                btnCondition.setOnClickListener { holder.flwConditions.removeView(btnCondition) }
             }
         }
 
